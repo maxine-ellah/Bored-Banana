@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \\\"Error: no test specified\\\" && exit 1",
     "start": "nodemon ./server.js",
+    "build": "browserify -t hbsfy ./src/index.js -g uglifyify > ./client/app.js",
     "serve": "node-dev server.js",
-    "watch": "watchify -t hbsfy ./src/index.js -o ./client/app.js -dv"
+    "watch": "watchify -t hbsfy index.js -o ./client/app.js -dv"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
     "handlebars": "^4.0.5",
     "hbsfy": "^2.6.0",
     "jquery": "^2.2.3",
+    "uglifyify": "^3.0.1",
     "watchify": "^3.7.0"
   }
 }
