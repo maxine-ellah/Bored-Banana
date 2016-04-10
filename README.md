@@ -27,8 +27,9 @@ browse to <http://localhost:9966/>.
 npm test
 ```
 
-## deploy
+## deploys
 
 ```
 npm run deploy
 ```
+hi
