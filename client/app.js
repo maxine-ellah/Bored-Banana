@@ -1,0 +1,1 @@
+console.error("Error: Cannot find module '/home/dev/workspace/Bootcamp/personal-project/src/index.js' from '/home/dev/workspace/Bootcamp/personal-project'");

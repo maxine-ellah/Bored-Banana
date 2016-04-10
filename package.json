@@ -4,7 +4,10 @@
   "description": "banana timer",
   "main": "index.js",
   "scripts": {
-    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+    "test": "echo \\\"Error: no test specified\\\" && exit 1",
+    "start": "nodemon ./server.js",
+    "serve": "node-dev server.js",
+    "watch": "watchify -t hbsfy ./src/index.js -o ./client/app.js -dv"
   },
   "repository": {
     "type": "git",
@@ -21,6 +24,15 @@
   "homepage": "https://github.com/maxine-ellah/personal-project#readme",
   "dependencies": {
     "express": "^4.13.4",
-    "node-dev": "^3.1.0"
+    "node-dev": "^3.1.0",
+    "nodemon": "^1.9.1",
+    "superagent": "^1.8.3"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "handlebars": "^4.0.5",
+    "hbsfy": "^2.6.0",
+    "jquery": "^2.2.3",
+    "watchify": "^3.7.0"
   }
 }
