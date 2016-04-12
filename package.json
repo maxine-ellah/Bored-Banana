@@ -24,7 +24,10 @@
   },
   "homepage": "https://github.com/maxine-ellah/personal-project#readme",
   "dependencies": {
+    "body-parser": "^1.15.0",
     "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
+    "hbs": "^4.0.0",
     "node-dev": "^3.1.0",
     "nodemon": "^1.9.1",
     "superagent": "^1.8.3"
