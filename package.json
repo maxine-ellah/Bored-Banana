@@ -34,9 +34,11 @@
   },
   "devDependencies": {
     "browserify": "^13.0.0",
+    "fs": "0.0.2",
     "handlebars": "^4.0.5",
     "hbsfy": "^2.6.0",
     "jquery": "^2.2.3",
+    "moment": "^2.12.0",
     "uglifyify": "^3.0.1",
     "watchify": "^3.7.0"
   }
