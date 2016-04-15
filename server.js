@@ -18,20 +18,22 @@ app.get('/', function (req, res) {
 app.post('/', function (req, res) {
   console.log('this is server receiving the post', req.body)
   fs.readFile('test.JSON', 'utf8', function(err, data) {
-
+    console.log('this is data: ', data)
     // turn the data (which is a string) from JSON into an object.
-    //var dataObject =  JSON.parse(data)
+    var dataObject =  JSON.parse(data)
 
     // join that object with the req.body that came in
-    //var dataToSave = dataObject + req.body
-    //console.log('dataObject: ', dataObject, 'req.body: ', req.body, 'dataToSave: ', dataToSave)
+
+    console.log('dataObject: ', dataObject[0], 'dataToSave: ', dataToSave)
 
     //var quantity = req.body[0].
     var obj = createNewObj(req.body[0].value, req.body[1].value, req.body[2].value)
+     console.log('this is obj: ', obj)
+    var dataToSave = dataObject.push(obj)
     // write the result
-    console.log('this is obj: ', obj)
 
-    fs.writeFile('test.JSON', JSON.stringify(obj), function(err){
+
+    fs.writeFile('test.JSON', JSON.stringify(dataToSave), function(err){
       if (err) console.log (err)
       console.log('wrote file fine')
     })
