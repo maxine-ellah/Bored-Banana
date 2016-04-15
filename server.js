@@ -16,11 +16,30 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-  console.log(req.body)
-  fs.writeFile('banana.js', req.body, function(err){
-    if (err) console.log (err)
+  console.log('this is server receiving the post', req.body)
+  fs.readFile('test.JSON', 'utf8', function(err, data) {
+
+    // turn the data (which is a string) from JSON into an object.
+    //var dataObject =  JSON.parse(data)
+
+    // join that object with the req.body that came in
+    //var dataToSave = dataObject + req.body
+    //console.log('dataObject: ', dataObject, 'req.body: ', req.body, 'dataToSave: ', dataToSave)
+
+    //var quantity = req.body[0].
+    var obj = createNewObj(req.body[0].value, req.body[1].value, req.body[2].value)
+    // write the result
+    console.log('this is obj: ', obj)
+
+    fs.writeFile('test.JSON', JSON.stringify(obj), function(err){
+      if (err) console.log (err)
+      console.log('wrote file fine')
+    })
+
   })
-  res.send('bananaStats', req.body)
+
+  // res.send('bananaStats', req.body)
+  res.send('ok')
 })
 
 app.post('/banana', function (req, res) {
@@ -31,3 +50,14 @@ app.post('/banana', function (req, res) {
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
+
+function createNewObj(givenQuantity, givenDateBought, givenCost) {
+  var newObj = {}
+  newObj.quantity = givenQuantity
+  newObj.dateBought = givenDateBought
+  newObj.cost = givenCost
+  return newObj
+}
+
+
+
