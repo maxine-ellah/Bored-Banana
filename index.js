@@ -12,7 +12,7 @@ var $ = require('jquery')
         .post('/')
         .send(formData)
         .end(function(err, res) {
-          console.log('this is res.body', res.body)
+          console.log('this is res.body: ', res.body)
         })
 
 
