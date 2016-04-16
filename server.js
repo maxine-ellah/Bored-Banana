@@ -3,6 +3,7 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 var fs = require('fs')
+var bananajs = require('./banana.JSON')
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -18,38 +19,37 @@ app.get('/', function (req, res) {
 app.post('/', function (req, res) {
   console.log('this is server receiving the post', req.body)
 
-  fs.readFile('test.JSON', 'utf8', function(err, data) {
+  fs.readFile('banana.JSON', 'utf8', function(err, data) {
     console.log('this is data: ', data)
 
     // turn the data (which is a string) from JSON into an object.
     var dataObject =  JSON.parse(data)
-
-    // join that object with the req.body that came in
-
     console.log('dataObject: ', dataObject)
 
+    // call the createNewObj function with new data enetered in the form, to
+    // create new object
     var obj = createNewObj(req.body[0].value, req.body[1].value, req.body[2].value)
      console.log('this is obj: ', obj)
 
+    // join that object with the req.body that came in
     var dataToSave = dataObject.concat(obj)
-      console.log('dataToSave: ', dataToSave)
+      console.log('dataToSave: ', dataToSave, 'dataToSaves type: ', typeof dataToSave)
 
 
     // write the result
-    fs.writeFile('test.JSON', JSON.stringify(dataToSave), function(err){
+    fs.writeFile('banana.JSON', JSON.stringify(dataToSave), function(err){
       if (err) console.log (err)
       console.log('wrote file fine')
     })
-
   })
 
   // res.send('bananaStats', req.body)
   res.send('ok')
 })
 
-app.post('/banana', function (req, res) {
+app.get('/banana', function (req, res) {
   console.log(req.body)
-   res.render('bananaStats', req.body)
+   res.json( bananajs )
 })
 
 app.listen(3000, function () {

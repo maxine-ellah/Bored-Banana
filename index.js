@@ -1,11 +1,11 @@
-// var bananaStats = require('./views/bananaStats.hbs')
+var bananaStats = require('./views/bananaStats.hbs')
 var request = require('superagent')
 var $ = require('jquery')
 
 
 
 
-    $("button").click(function(){
+    $("button#addBananaData").click(function(){
       var formData = $("form").serializeArray();
 
       request
@@ -21,6 +21,26 @@ var $ = require('jquery')
       // });
       return false;
   });
+
+
+
+    $("button#showBananas").click(function(){
+
+      request
+        .get('http://localhost:3000/bananas')
+        .end(function(err, res){
+          document.body.innerHTML = bananaStats({ bananas: res.body })
+
+        })
+        return false;
+    });
+
+
+
+
+
+
+
 
 // });
 
