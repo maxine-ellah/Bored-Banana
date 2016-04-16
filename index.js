@@ -20,7 +20,7 @@ var $ = require('jquery')
       //     $("#results").append(field.name + ":" + field.value + " ");
       // });
       return false;
-  });
+    });
 
 
 
@@ -29,7 +29,7 @@ var $ = require('jquery')
       request
         .get('http://localhost:3000/bananas')
         .end(function(err, res){
-          document.body.innerHTML = bananaStats({ bananas: res.body })
+          document.body.innerHTML = bananaStats({ bananas: res.body });
 
         })
         return false;

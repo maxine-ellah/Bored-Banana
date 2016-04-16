@@ -3,7 +3,7 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 var fs = require('fs')
-var bananajs = require('./banana.JSON')
+var bananas = require('./banana.js')
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -19,7 +19,7 @@ app.get('/', function (req, res) {
 app.post('/', function (req, res) {
   console.log('this is server receiving the post', req.body)
 
-  fs.readFile('banana.JSON', 'utf8', function(err, data) {
+  fs.readFile('banana.js', 'utf8', function(err, data) {
     console.log('this is data: ', data)
 
     // turn the data (which is a string) from JSON into an object.
@@ -37,7 +37,7 @@ app.post('/', function (req, res) {
 
 
     // write the result
-    fs.writeFile('banana.JSON', JSON.stringify(dataToSave), function(err){
+    fs.writeFile('banana.js', JSON.stringify(dataToSave), function(err){
       if (err) console.log (err)
       console.log('wrote file fine')
     })
@@ -48,13 +48,19 @@ app.post('/', function (req, res) {
 })
 
 app.get('/banana', function (req, res) {
-  console.log(req.body)
-   res.json( bananajs )
+  fs.readFile('banana.js', 'utf8', function(err, data) {
+  if (err) {
+    console.log(err)
+  }
+   res.json(JSON.parse(data))
+  })
 })
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
+
+
 
 function createNewObj(givenQuantity, givenDateBought, givenCost) {
   var newObj = {}
