@@ -47,7 +47,7 @@ app.post('/', function (req, res) {
   res.send('ok')
 })
 
-app.get('/banana', function (req, res) {
+app.get('/bananas', function (req, res) {
   fs.readFile('banana.js', 'utf8', function(err, data) {
   if (err) {
     console.log(err)
@@ -69,6 +69,7 @@ function createNewObj(givenQuantity, givenDateBought, givenCost) {
   newObj.cost = givenCost
   return newObj
 }
+
 
 
 
