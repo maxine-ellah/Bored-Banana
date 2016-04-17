@@ -1,1 +1,1 @@
-[{"id":"1","quantity":"10","dateBought":"2016-04-16","cost":"20"},{"id":"2","quantity":"3","dateBought":"2016-04-10","cost":"5"},{"id":"3","quantity":"7","dateBought":"2016-04-01","cost":"10"},{"id":4,"quantity":"333","dateBought":"","cost":"333"},{"id":5,"quantity":"333","dateBought":"","cost":"333"},{"id":6,"quantity":"333","dateBought":"","cost":"333"}]
+[{"id":1,"quantity":"5","dateBought":"","cost":"55"},{"id":2,"quantity":"5","dateBought":"","cost":"55"},{"id":3,"quantity":"5","dateBought":"","cost":"55"},{"id":4,"quantity":"67","dateBought":"2016-05-12","cost":"20"}]

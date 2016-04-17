@@ -31,9 +31,6 @@ app.post('/', function (req, res) {
     var obj = createNewBananaObj(dataObject.length +1, req.body[0].value, req.body[1].value, req.body[2].value)
      console.log('this is obj: ', obj)
 
-    // Automatically assign a new id number to each new object
-    // var objWithId = getBiggestId(obj)
-    // console.log('THIS IS OBJ WITH ID: ', objWithId)
 
     // join that object with the req.body that came in
     var dataToSave = dataObject.concat(obj)
@@ -61,21 +58,11 @@ app.get('/bananas', function (req, res) {
 })
 
 
+
+
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
-
-
-
-function getBiggestId(obj) {
-  fs.readFile('banana.js', 'utf8', function(err, data) {
-    var idArr = []
-    for (i = 0; i<data.length; i++) {
-      idArr.push(data.id)
-    }
-    idArr.length +1
-  })
-}
 
 
 function createNewBananaObj(givenId, givenQuantity, givenDateBought, givenCost) {
@@ -88,16 +75,6 @@ function createNewBananaObj(givenId, givenQuantity, givenDateBought, givenCost) 
 }
 
 
-// function getBiggestId(obj) {
-//   var idArr = []
-//     for (i = 0; i<obj.length; i++) {
-//       idArr.push(obj[i].id)
-//     }
-//     return idArr.length +1
-// }
-
-// .sort(function(a, b) {
-//       return a - b;
 
 
-// [-1]
+
