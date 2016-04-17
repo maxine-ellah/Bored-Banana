@@ -28,12 +28,12 @@ app.post('/', function (req, res) {
 
     // call the createNewObj function with new data enetered in the form, to
     // create new object
-    var obj = createNewBananaObj(req.body[0].value, req.body[1].value, req.body[2].value)
+    var obj = createNewBananaObj(dataObject.length +1, req.body[0].value, req.body[1].value, req.body[2].value)
      console.log('this is obj: ', obj)
 
     // Automatically assign a new id number to each new object
-    var objWithId = getBiggestId(obj)
-    console.log('THIS IS OBJ WITH ID: ', objWithId)
+    // var objWithId = getBiggestId(obj)
+    // console.log('THIS IS OBJ WITH ID: ', objWithId)
 
     // join that object with the req.body that came in
     var dataToSave = dataObject.concat(obj)
@@ -60,26 +60,27 @@ app.get('/bananas', function (req, res) {
   })
 })
 
+
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
 
 
 
-function getBiggestId() {
+function getBiggestId(obj) {
   fs.readFile('banana.js', 'utf8', function(err, data) {
     var idArr = []
     for (i = 0; i<data.length; i++) {
-      idArr.push(data.id).sort(function(a, b) {
-      return a - b;
-      })
-    return idArr[-1] ++
+      idArr.push(data.id)
     }
+    idArr.length +1
   })
 }
 
-function createNewBananaObj(givenQuantity, givenDateBought, givenCost) {
+
+function createNewBananaObj(givenId, givenQuantity, givenDateBought, givenCost) {
   var newObj = {}
+  newObj.id = givenId
   newObj.quantity = givenQuantity
   newObj.dateBought = givenDateBought
   newObj.cost = givenCost
@@ -87,15 +88,16 @@ function createNewBananaObj(givenQuantity, givenDateBought, givenCost) {
 }
 
 
-
-
-
 // function getBiggestId(obj) {
-//     var idArr = []
+//   var idArr = []
 //     for (i = 0; i<obj.length; i++) {
 //       idArr.push(obj[i].id)
 //     }
-//     obj.id === idArr[-1] ++
-//     })
+//     return idArr.length +1
 // }
 
+// .sort(function(a, b) {
+//       return a - b;
+
+
+// [-1]
