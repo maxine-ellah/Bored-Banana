@@ -1,4 +1,5 @@
 var bananaStats = require('./views/bananaStats.hbs')
+var timerPage = require('./views/timerPage.hbs')
 var request = require('superagent')
 var $ = require('jquery')
 
@@ -30,18 +31,26 @@ var $ = require('jquery')
         .get('http://localhost:3000/bananas')
         .end(function(err, res){
           document.body.innerHTML = bananaStats({ bananas: res.body });
-
+          $('.startTimer').click(function(){
+            startTimer($(this).data("id"))
+          })
         })
         return false;
     });
 
 
+    function startTimer() {
+      request
+        .get('http://localhost:3000/bananas/:id')
+        .end(function(err, res) {
+          console.log('res sent!')
+        })
+    }
 
 
 
 
 
 
-// });
 
-//   document.body.innerHTML = bananaStats({banana: res.body})
+

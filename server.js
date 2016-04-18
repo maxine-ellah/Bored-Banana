@@ -4,6 +4,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var fs = require('fs')
 var bananas = require('./banana.js')
+var moment = require('moment')
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -65,8 +66,7 @@ app.get('/bananas/:id', function (req, res) {
   }
     var paramsId = req.params.id
     var selectedBanana = JSON.parse(data)[paramsId -1]
-    console.log(selectedBanana)
-
+    console.log('selectedBanana: ', selectedBanana)
 
   // then find out when its inputted date is
   //then calculate the amout of time left that banana has before it goes bad
