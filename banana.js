@@ -1,1 +1,1 @@
-[{"id":1,"quantity":"5","dateBought":"","cost":"55"},{"id":2,"quantity":"5","dateBought":"","cost":"55"},{"id":3,"quantity":"5","dateBought":"","cost":"55"},{"id":4,"quantity":"67","dateBought":"2016-05-12","cost":"20"}]
+[{"id":1,"quantity":"5","dateBought":"","cost":"55"},{"id":2,"quantity":"5","dateBought":"","cost":"55"},{"id":3,"quantity":"5","dateBought":"","cost":"55"},{"id":4,"quantity":"67","dateBought":"2016-05-12","cost":"20"},{"id":5,"quantity":"44","dateBought":"","cost":"77"}]

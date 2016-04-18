@@ -57,7 +57,31 @@ app.get('/bananas', function (req, res) {
   })
 })
 
+app.get('/bananas/:id', function (req, res) {
+  //grab the banana from the json file by it's id,
+  fs.readFile('banana.js', 'utf8', function(err, data) {
+    if (err) {
+    console.log(err)
+  }
+    var paramsId = req.params.id
+    var selectedBanana = JSON.parse(data)[paramsId -1]
+    console.log(selectedBanana)
 
+
+  // then find out when its inputted date is
+  //then calculate the amout of time left that banana has before it goes bad
+  var time = calculateTimeLeft(selectedBanana.dateBought)
+  // then, render timer page and pass in amount of time left to the page
+  res.render('timerPage', { time: time })
+  })
+})
+
+
+
+function calculateTimeLeft(dateBought) {
+  //return timeLeft
+  return "10 days"
+}
 
 
 app.listen(3000, function () {
