@@ -7,15 +7,17 @@ var $ = require('jquery')
 
 
     $("button#addBananaData").click(function(){
-      var formData = $("form").serializeArray();
+      var formData = $("form").serializeArray()
 
       request
         .post('/')
         .send(formData)
         .end(function(err, res) {
           console.log('this is res.body: ', res.body)
-        })
 
+
+        })
+        document.getElementById("form").reset()
 
       // $.each(x, function(i, field){
       //     $("#results").append(field.name + ":" + field.value + " ");

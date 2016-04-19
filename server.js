@@ -36,7 +36,7 @@ app.post('/', function (req, res) {
 
     // join that object with the req.body that came in
     var dataToSave = dataObject.concat(obj)
-      console.log('dataToSave: ', dataToSave, 'dataToSaves type: ', typeof dataToSave)
+      // console.log('dataToSave: ', dataToSave, 'dataToSaves type: ', typeof dataToSave)
 
 
     // write the result
@@ -67,7 +67,7 @@ app.get('/bananas/:id', function (req, res) {
   }
     var paramsId = req.params.id
     var selectedBanana = JSON.parse(data)[paramsId -1]
-    console.log('selectedBanana: ', selectedBanana)
+    // console.log('selectedBanana: ', selectedBanana)
 
   // then find out when its inputted date is
   // then calculate the amout of time left that banana has before it goes bad
@@ -77,11 +77,10 @@ app.get('/bananas/:id', function (req, res) {
 
   // server side - with an href in the button on the bananas view
   // returning a whole view, with info in it
-  setInterval(function () {
-    console.log(time)
-    res.render('timerPage', { time: time })
-    return
-    }, 1000)
+
+    // console.log(time)
+    res.render('timerPage', { time: selectedBanana.timeEntered })
+
 
   // setInterval(function () {
   //   res.render('timerPage', { time: time })
@@ -103,11 +102,11 @@ function calculateTimeLeft(timeEntered) {
   // var difference = a.diff(b, 'hours')
   // console.log(difference)
   // var now = moment();
-  var tEntered = moment(timeEntered);
-  var inSevenDayz = moment([2016, 3, 22])
-  var difference = tEntered.to(inSevenDayz)
+  var timeEnteredMoment = moment(timeEntered);
+  var inSevenDays = moment([2016, 3, 22])
+  var difference = timeEnteredMoment.to(inSevenDays)
+  console.log('difference: ', difference)
   return difference
-  // return difference
 }
 
 
