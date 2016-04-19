@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var fs = require('fs')
 var bananas = require('./banana.js')
 var moment = require('moment')
+// var timerPage = require('./views/timerPage.hbs')
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -69,17 +70,27 @@ app.get('/bananas/:id', function (req, res) {
     console.log('selectedBanana: ', selectedBanana)
 
   // then find out when its inputted date is
-  //then calculate the amout of time left that banana has before it goes bad
+  // then calculate the amout of time left that banana has before it goes bad
   var time = calculateTimeLeft(selectedBanana.dateBought)
   // then, render timer page and pass in amount of time left to the page
+
+  // server side - with an href in the button on the bananas view
+  // returning a whole view, with info in it
+  console.log(time)
   res.render('timerPage', { time: time })
+
+  // client side, returning just an object
+  // the client now puts that info into the view itself
+  // res.json(JSON.parse(time))
+  // console.log(selectedBanana.dateBought)
+  // res.json(time)
   })
 })
 
 
-
 function calculateTimeLeft(dateBought) {
-  //return timeLeft
+  var now = moment()
+  now - dateBought
   return "10 days"
 }
 
@@ -100,5 +111,34 @@ function createNewBananaObj(givenId, givenQuantity, givenDateBought, givenCost) 
 
 
 
+
+
+
+// app.get('/bananas/:id', function (req, res) {
+//   //grab the banana from the json file by it's id,
+//   fs.readFile('banana.js', 'utf8', function(err, data) {
+//     if (err) {
+//     console.log(err)
+//   }
+//     var paramsId = req.params.id
+//     var selectedBanana = JSON.parse(data)[paramsId -1]
+//     console.log('selectedBanana: ', selectedBanana)
+
+//   // then find out when its inputted date is
+//   // then calculate the amout of time left that banana has before it goes bad
+//   var time = calculateTimeLeft(selectedBanana.dateBought)
+//   // then, render timer page and pass in amount of time left to the page
+
+//   // server side - with an href in the button on the bananas view
+//   // returning a whole view, with info in it
+//   // res.render('timerPage', { time: time })
+
+//   // client side, returning just an object
+//   // the client now puts that info into the view itself
+//   // res.json(JSON.parse(time))
+//   console.log(selectedBanana.dateBought)
+//   res.json(time)
+//   })
+// })
 
 
