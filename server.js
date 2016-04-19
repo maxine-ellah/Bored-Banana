@@ -93,9 +93,10 @@ function calculateTimeLeft(timeEntered) {
   // var b = moment(Number(timeEntered))
   // var difference = a.diff(b, 'hours')
   // console.log(difference)
-  var a = moment();
-  var b = moment(timeEntered);
-  return a.diff(b, 'minutes')
+  // var now = moment();
+  var tEntered = moment(timeEntered);
+  var inSevenDayz = moment([2016, 3, 22])
+  return inSevenDayz.to(tEntered, 'days')
   // return difference
 }
 
