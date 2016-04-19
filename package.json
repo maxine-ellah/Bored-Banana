@@ -8,7 +8,10 @@
     "start": "nodemon ./server.js",
     "build": "browserify -t hbsfy ./src/index.js -g uglifyify > ./client/app.js",
     "serve": "node-dev server.js",
-    "watch": "watchify -t hbsfy index.js -o ./client/app.js -dv"
+    "watch:index": "watchify -t hbsfy ./src/index.js -o ./client/app.js -dv",
+    "watch:time": "watchify ./src/timer.js -o client/apptimer.js -v",
+    "watch": "npm-run-all --parallel watch:*"
+
   },
   "repository": {
     "type": "git",
@@ -40,6 +43,7 @@
     "hbsfy": "^2.6.0",
     "jquery": "^2.2.3",
     "moment": "^2.12.0",
+    "npm-run-all": "^1.7.0",
     "uglifyify": "^3.0.1",
     "watchify": "^3.7.0"
   }

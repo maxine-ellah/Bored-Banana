@@ -1,5 +1,5 @@
-var bananaStats = require('../views/bananaStats.hbs')
-//var timerPage = require('./views/timerPage.hbs')
+var bananaStats = require('./views/bananaStats.hbs')
+var timerPage = require('./views/timerPage.hbs')
 var request = require('superagent')
 var $ = require('jquery')
 
