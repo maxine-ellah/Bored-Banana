@@ -71,7 +71,7 @@ app.get('/bananas/:id', function (req, res) {
 
   // then find out when its inputted date is
   // then calculate the amout of time left that banana has before it goes bad
-  var time = calculateTimeLeft(selectedBanana.dateBought)
+  var time = calculateTimeLeft(selectedBanana.timeEntered)
   // then, render timer page and pass in amount of time left to the page
 
   // server side - with an href in the button on the bananas view
@@ -88,10 +88,15 @@ app.get('/bananas/:id', function (req, res) {
 })
 
 
-function calculateTimeLeft(dateBought) {
-  var now = moment()
-  now - dateBought
-  return "10 days"
+function calculateTimeLeft(timeEntered) {
+  // var a = moment().format()
+  // var b = moment(Number(timeEntered))
+  // var difference = a.diff(b, 'hours')
+  // console.log(difference)
+  var a = moment();
+  var b = moment(timeEntered);
+  return a.diff(b, 'minutes')
+  // return difference
 }
 
 
@@ -106,6 +111,7 @@ function createNewBananaObj(givenId, givenQuantity, givenDateBought, givenCost) 
   newObj.quantity = givenQuantity
   newObj.dateBought = givenDateBought
   newObj.cost = givenCost
+  newObj.timeEntered = moment()
   return newObj
 }
 
