@@ -71,13 +71,22 @@ app.get('/bananas/:id', function (req, res) {
 
   // then find out when its inputted date is
   // then calculate the amout of time left that banana has before it goes bad
-  var time = calculateTimeLeft(selectedBanana.timeEntered)
+
+    var time = calculateTimeLeft(selectedBanana.timeEntered)
   // then, render timer page and pass in amount of time left to the page
 
   // server side - with an href in the button on the bananas view
   // returning a whole view, with info in it
-  console.log(time)
-  res.render('timerPage', { time: time })
+  setInterval(function () {
+    console.log(time)
+    res.render('timerPage', { time: time })
+    return
+    }, 1000)
+
+  // setInterval(function () {
+  //   res.render('timerPage', { time: time })
+  // })
+
 
   // client side, returning just an object
   // the client now puts that info into the view itself
@@ -96,7 +105,8 @@ function calculateTimeLeft(timeEntered) {
   // var now = moment();
   var tEntered = moment(timeEntered);
   var inSevenDayz = moment([2016, 3, 22])
-  return inSevenDayz.to(tEntered, 'days')
+  var difference = tEntered.to(inSevenDayz)
+  return difference
   // return difference
 }
 
