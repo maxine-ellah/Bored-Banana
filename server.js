@@ -65,14 +65,17 @@ app.get('/bananas/:id', function (req, res) {
     if (err) {
     console.log(err)
   }
+    console.log("req.params: ", req.params, "data: ", data)
+
     var paramsId = req.params.id
+    console.log(JSON.parse(data), paramsId)
     var selectedBanana = JSON.parse(data)[paramsId -1]
     // console.log('selectedBanana: ', selectedBanana)
 
   // then find out when its inputted date is
   // then calculate the amout of time left that banana has before it goes bad
 
-    var time = calculateTimeLeft(selectedBanana.timeEntered)
+    // var time = calculateTimeLeft(selectedBanana.timeEntered)
   // then, render timer page and pass in amount of time left to the page
 
   // server side - with an href in the button on the bananas view
