@@ -99,18 +99,18 @@ app.get('/bananas/:id', function (req, res) {
 })
 
 
-function calculateTimeLeft(timeEntered) {
-  // var a = moment().format()
-  // var b = moment(Number(timeEntered))
-  // var difference = a.diff(b, 'hours')
-  // console.log(difference)
-  // var now = moment();
-  var timeEnteredMoment = moment(timeEntered);
-  var inSevenDays = moment([2016, 3, 22])
-  var difference = timeEnteredMoment.to(inSevenDays)
-  console.log('difference: ', difference)
-  return difference
-}
+// function calculateTimeLeft(timeEntered) {
+//   // var a = moment().format()
+//   // var b = moment(Number(timeEntered))
+//   // var difference = a.diff(b, 'hours')
+//   // console.log(difference)
+//   // var now = moment();
+//   var timeEnteredMoment = moment(timeEntered);
+//   var inSevenDays = moment([2016, 3, 22])
+//   var difference = timeEnteredMoment.to(inSevenDays)
+//   console.log('difference: ', difference)
+//   return difference
+// }
 
 
 app.listen(3000, function () {
