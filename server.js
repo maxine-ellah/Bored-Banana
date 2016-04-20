@@ -122,7 +122,7 @@ function createNewBananaObj(givenId, givenQuantity, givenDateBought, givenCost) 
   var newObj = {}
   newObj.id = givenId
   newObj.quantity = givenQuantity
-  newObj.dateBought = givenDateBought
+  newObj.dateBought = moment(givenDateBought).format("dddd, MMMM Do YYYY")
   newObj.cost = givenCost
   newObj.timeEntered = moment()
   return newObj

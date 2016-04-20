@@ -13542,18 +13542,21 @@ var timeEntered = moment($("#time").text())
 var endTime = moment(timeEntered).add(7, 'day')
 // var remainingTime = moment.duration(timeEntered.to(endTime))
 // var remainingTime = moment.duration(endTime - timeEntered).hours()
-  var remainingTime = endTime.diff(timeEntered, 'seconds')
 // console.log("remainingTime: ", remainingTime)
+// var remainingTime = endTime - moment()
+var remainingTime = endTime.diff(timeEntered, 'seconds')
 console.log("timeEntered: ", timeEntered)
-console.log("endTime: ", endTime)
+console.log(moment.duration(endTime - moment()).days(), moment.duration(endTime - moment()).hours(), moment.duration(endTime - moment()).minutes(), moment.duration(endTime - moment()).seconds())
 console.log("remainingTime: ", remainingTime)
 
 
 
+// setInterval() {
 
-
-
-
+// var now = moment()
+// remainingTime = endTime - now
+// return moment.duration(remainingTime).hours()
+// }
 
 
 
