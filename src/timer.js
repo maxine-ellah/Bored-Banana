@@ -1,15 +1,17 @@
 var $ = require("jquery")
+var moment = require("moment")
 
 
-var timeEntered = $("#time").text()
 
-// console.log("timeEntered: ", timeEntered)
 
-// var time = document.querySelector('#time').textContent
-
-// console.log("time: ", time)
-
-var remainingTime =
+var timeEntered = moment($("#time").text())
+var endTime = moment([2016, 3, 22])
+// var remainingTime = moment.duration(timeEntered.to(endTime))
+var remainingTime = moment.duration(endTime - timeEntered)
+// console.log("remainingTime: ", remainingTime)
+console.log("timeEntered: ", timeEntered)
+console.log("endTime: ", endTime)
+console.log("remainingTime: ", remainingTime)
 
 
 function calculateTimeLeft(timeEntered) {
@@ -24,3 +26,15 @@ function calculateTimeLeft(timeEntered) {
   console.log('difference: ', difference)
   return difference
 }
+
+
+
+
+
+
+
+// console.log("timeEntered: ", timeEntered)
+
+// var time = document.querySelector('#time').textContent
+
+// console.log("time: ", time)
