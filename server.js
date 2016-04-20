@@ -82,7 +82,7 @@ app.get('/bananas/:id', function (req, res) {
   // returning a whole view, with info in it
 
     // console.log(time)
-    res.render('timerPage', { time: selectedBanana.timeEntered })
+    res.render('timerPage', { time: selectedBanana.dateBought, cost: selectedBanana.cost })
 
 
   // setInterval(function () {
@@ -122,7 +122,8 @@ function createNewBananaObj(givenId, givenQuantity, givenDateBought, givenCost) 
   var newObj = {}
   newObj.id = givenId
   newObj.quantity = givenQuantity
-  newObj.dateBought = moment(givenDateBought).format("dddd, MMMM Do YYYY")
+  newObj.dateBought = moment(givenDateBought).format()
+  // newObj.dateBoughtStamp = moment(givenDateBought)
   newObj.cost = givenCost
   newObj.timeEntered = moment()
   return newObj

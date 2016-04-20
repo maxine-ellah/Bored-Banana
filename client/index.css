@@ -3,13 +3,8 @@ main {
 }
 
 body {
-  /*background-image: url('boredbanana2.png');*/
+  background-image: url('boredbanana2.png');
 }
 
-/*#time {
-  color: orange;
-}*/
 
-.time {
-  color: blue;
-}
+
