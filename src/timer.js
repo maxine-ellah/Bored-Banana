@@ -5,27 +5,54 @@ var moment = require("moment")
 
 
 var timeEntered = moment($("#time").text())
-var endTime = moment([2016, 3, 22])
+var endTime = moment(timeEntered).add(7, 'day')
 // var remainingTime = moment.duration(timeEntered.to(endTime))
-var remainingTime = moment.duration(endTime - timeEntered)
+// var remainingTime = moment.duration(endTime - timeEntered).hours()
+  var remainingTime = endTime.diff(timeEntered, 'seconds')
 // console.log("remainingTime: ", remainingTime)
 console.log("timeEntered: ", timeEntered)
 console.log("endTime: ", endTime)
 console.log("remainingTime: ", remainingTime)
 
 
-function calculateTimeLeft(timeEntered) {
-  // var a = moment().format()
-  // var b = moment(Number(timeEntered))
-  // var difference = a.diff(b, 'hours')
-  // console.log(difference)
-  // var now = moment();
-  var timeEnteredMoment = moment(timeEntered);
-  var inSevenDays = moment([2016, 3, 22])
-  var difference = timeEnteredMoment.to(inSevenDays)
-  console.log('difference: ', difference)
-  return difference
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function calculateTimeLeft(timeEntered) {
+//   // var a = moment().format()
+//   // var b = moment(Number(timeEntered))
+//   // var difference = a.diff(b, 'hours')
+//   // console.log(difference)
+//   // var now = moment();
+//   var timeEnteredMoment = moment(timeEntered);
+//   var inSevenDays = moment([2016, 3, 22])
+//   var difference = timeEnteredMoment.to(inSevenDays)
+//   console.log('difference: ', difference)
+//   return difference
+// }
 
 
 
