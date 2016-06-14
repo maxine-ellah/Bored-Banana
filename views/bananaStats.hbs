@@ -1,0 +1,11 @@
+{{#each bananas}}
+<h4>Yo, I'm banana #{{this.id}}</h4>
+<p>How many I bought: {{this.quantity}}</p>
+<p>When I bought them: {{this.dateBought}}</p>
+<p>How much they cost: ${{this.cost}}</p>
+
+<a class="startTimerServer" type="button" href="/bananas/{{this.id}}">Check freshness</a>
+{{/each}}
+<br><br><br>
+<button id="backBtn">go back</button>
+

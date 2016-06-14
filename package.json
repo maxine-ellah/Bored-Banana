@@ -1,0 +1,50 @@
+{
+  "name": "boredbanana",
+  "version": "1.0.0",
+  "description": "banana timer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1",
+    "start": "nodemon ./server.js",
+    "build": "browserify -t hbsfy ./src/index.js -g uglifyify > ./client/app.js",
+    "serve": "node-dev server.js",
+    "watch:index": "watchify -t hbsfy ./src/index.js -o ./client/app.js -dv",
+    "watch:time": "watchify ./src/timer.js -o client/apptimer.js -v",
+    "watch": "npm-run-all --parallel watch:*"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxine-ellah/personal-project.git"
+  },
+  "keywords": [
+    "banana"
+  ],
+  "author": "maxine-ellah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxine-ellah/personal-project/issues"
+  },
+  "homepage": "https://github.com/maxine-ellah/personal-project#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
+    "hbs": "^4.0.0",
+    "moment-timezone": "^0.5.3",
+    "node-dev": "^3.1.0",
+    "nodemon": "^1.9.1",
+    "superagent": "^1.8.3"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "fs": "0.0.2",
+    "handlebars": "^4.0.5",
+    "hbsfy": "^2.6.0",
+    "jquery": "^2.2.3",
+    "moment": "^2.12.0",
+    "npm-run-all": "^1.7.0",
+    "uglifyify": "^3.0.1",
+    "watchify": "^3.7.0"
+  }
+}
