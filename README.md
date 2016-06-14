@@ -1,6 +1,6 @@
 
 # Bored Banana
-*Too many bananas are bored of going brown in the fruitbowl. Don't leave your yellow buds behind, get that potassium in ya! *
+*Too many bananas are bored of going brown in the fruitbowl. Don't leave your yellow buds behind, get that potassium in ya!*
 
 Bored Banana is a food expiration app to help cut down food wastage.
 This was the first project I made at Dev Academy, and it was built as a prototype to time the usability of all kinds of foods. I chose bananas because they're yummy, fun to draw and amongst some of the most frequently wasted foods in New Zealand household.
