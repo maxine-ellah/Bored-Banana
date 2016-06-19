@@ -3,7 +3,7 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 var fs = require('fs')
-var bananas = require('./banana.js')
+var bananas = require('./banana.JSON')
 var moment = require('moment')
 
 app.set('views', path.join(__dirname, 'views'));
@@ -39,7 +39,7 @@ app.post('/', function (req, res) {
 
 
     // write the result
-    fs.writeFile('banana.js', JSON.stringify(dataToSave), function(err){
+    fs.writeFile('banana.JSON', JSON.stringify(dataToSave), function(err){
       if (err) console.log (err)
       console.log('wrote file fine')
     })
@@ -50,7 +50,7 @@ app.post('/', function (req, res) {
 })
 
 app.get('/bananas', function (req, res) {
-  fs.readFile('banana.js', 'utf8', function(err, data) {
+  fs.readFile('banana.JSON', 'utf8', function(err, data) {
   if (err) {
     console.log(err)
   }
@@ -60,7 +60,7 @@ app.get('/bananas', function (req, res) {
 
 app.get('/bananas/:id', function (req, res) {
   //grab the banana from the json file by it's id,
-  fs.readFile('banana.js', 'utf8', function(err, data) {
+  fs.readFile('banana.JSON', 'utf8', function(err, data) {
     if (err) {
     console.log(err)
   }

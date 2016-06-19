@@ -14,14 +14,9 @@ var $ = require('jquery')
         .send(formData)
         .end(function(err, res) {
           console.log('this is res.body: ', res.body)
-
-
         })
         document.getElementById("form").reset()
 
-      // $.each(x, function(i, field){
-      //     $("#results").append(field.name + ":" + field.value + " ");
-      // });
       return false;
     });
 
@@ -33,34 +28,6 @@ var $ = require('jquery')
         .get('http://localhost:3000/bananas')
         .end(function(err, res){
           document.body.innerHTML = bananaStats({ bananas: res.body });
-          // $('.startTimerClient').click(function(){
-          //   startTimer($(this).data("id"))
-          // })
         })
         return false;
     });
-
-
-    // request
-    //     .get('http://localhost:3000/bananas/'+id)
-    //     .end(function(err, res) {
-    //       console.log('res sent!', res.body)
-    //     })
-
-
-    // function startTimer(id) {
-    //   request
-    //     .get('http://localhost:3000/bananas/'+id)
-    //     .end(function(err, res) {
-    //       // console.log('res sent!', res.body)
-    //       document.body.innerHTML = timerPage({ time: res.body })
-    //     })
-    // }
-
-
-
-
-
-
-
-
