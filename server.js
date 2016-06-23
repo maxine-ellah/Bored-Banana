@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var fs = require('fs')
 var bananas = require('./banana.JSON')
 var moment = require('moment')
+var knex = require('knex')
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
