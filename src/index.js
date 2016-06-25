@@ -6,7 +6,10 @@ var $ = require('jquery')
 $(document).ready(function(){
   $("button#addBananaData").click(function(){
     addBananaData()
-  }); //close listener
+  }) //close listener
+  $("button#showBananas").click(function(){
+    showBananaData()
+  })
 }) //close document ready
 
 
@@ -22,15 +25,11 @@ $(document).ready(function(){
   }
 
 
-
-
-
-    $("button#showBananas").click(function(){
-
-      request
-        .get('http://localhost:3000/bananas')
-        .end(function(err, res){
-          document.body.innerHTML = bananaStats({ bananas: res.body });
-        })
-        return false;
-    });
+  function showBananaData() {
+    request
+      .get('http://localhost:3000/bananas')
+      .end(function(err, res) {
+        document.body.innerHTML = bananaStats({ bananas: res.body });
+      })
+      return false;
+  }
