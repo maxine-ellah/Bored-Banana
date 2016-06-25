@@ -3,7 +3,7 @@ var moment = require("moment")
 
 
   setInterval(function () {
-    var dateBought = moment($("#time").text())
+    var dateBought = moment($("#time"))
     var endTime = moment(dateBought).add(7, 'day')
 
     var days = moment.duration(endTime - moment()).days()
