@@ -66,18 +66,19 @@ app.get('/bananas/:id', function (req, res) {
   }
     console.log("req.params: ", req.params, "data: ", data)
 
-    var paramsId = req.params.id
-    console.log(JSON.parse(data), paramsId)
-    var selectedBanana = JSON.parse(data)[paramsId -1]
+    var bananaId = req.params.id -1
+    var selectedBanana = JSON.parse(data)[bananaId]
+    console.log(JSON.parse(data), bananaId)
 
-    res.render('timerPage', { time: selectedBanana.dateBought, cost: selectedBanana.cost })
+    // res.render('timerPage', { time: selectedBanana.dateBought, cost: selectedBanana.cost })
+    res.json(selectedBanana)
 
   })
 })
 
 
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+  console.log('A Bored Banana is listening on port 3000!');
 });
 
 

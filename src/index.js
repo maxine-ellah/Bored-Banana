@@ -25,11 +25,24 @@ $(document).ready(function(){
       })
   }
 
-
   function showBananaData() {
     request
       .get('http://localhost:3000/bananas')
       .end(function(err, res) {
+        console.log('res.body', res.body);
         document.body.innerHTML = bananaStats({ bananas: res.body })
+        $(".startTimerServer").click(function(){
+          console.log($(this).data("id"));
+          startTimer($(this).data("id"))
+        })
       });
+  }
+
+  function startTimer(id){
+    request
+    .get('http://localhost:3000/bananas/' + id)
+    .end(function(err, res){
+      console.log('res.body in startTimer function: ', res.body);
+      // document.body.innerHTML = timerPage()
+    })
   }
