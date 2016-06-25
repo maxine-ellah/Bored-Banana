@@ -1,5 +1,5 @@
 var bananaStats = require('../views/bananaStats.hbs')
-//var timerPage = require('./views/timerPage.hbs')
+var timerPage = require('../views/timerPage.hbs')
 var request = require('superagent')
 var $ = require('jquery')
 
@@ -43,6 +43,7 @@ $(document).ready(function(){
     .get('http://localhost:3000/bananas/' + id)
     .end(function(err, res){
       console.log('res.body in startTimer function: ', res.body);
-      // document.body.innerHTML = timerPage()
+      // document.body.innerHTML = timerPage(res.body)
+      $('body').html(timerPage(res.body))
     })
   }
