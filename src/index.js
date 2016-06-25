@@ -6,10 +6,10 @@ var $ = require('jquery')
 $(document).ready(function(){
   $("button#addBananaData").click(function(){
     addBananaData()
-  }) //close listener
+  }) //close addBanana listener
   $("button#showBananas").click(function(){
     showBananaData()
-  })
+  }) //close showBananas listener
 }) //close document ready
 
 
