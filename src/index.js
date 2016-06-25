@@ -3,31 +3,37 @@ var bananaStats = require('../views/bananaStats.hbs')
 var request = require('superagent')
 var $ = require('jquery')
 
+$(document).ready(function(){
+  $("button#addBananaData").click(function(){
+    addBananaData()
+  }) //close addBanana listener
+  $("button#showBananas").click(function(e){
+    showBananaData()
+    e.preventDefault()
+  }) //close showBananas listener
+
+}) //close document ready
 
 
-
-    $("button#addBananaData").click(function(){
-      var formData = $("form").serializeArray()
-
-      request
-        .post('/')
-        .send(formData)
-        .end(function(err, res) {
-          console.log('this is res.body: ', res.body)
-        })
+  function addBananaData() {
+    var formData = $("form").serializeArray()
+    request
+      .post('/')
+      .send(formData)
+      .end(function(err, res) {
         document.getElementById("form").reset()
-
-      return false;
-    });
-
+      })
+  }
 
 
-    $("button#showBananas").click(function(){
-
-      request
-        .get('http://localhost:3000/bananas')
-        .end(function(err, res){
-          document.body.innerHTML = bananaStats({ bananas: res.body });
+  function showBananaData() {
+    request
+      .get('http://localhost:3000/bananas')
+      .end(function(err, res) {
+        document.body.innerHTML = bananaStats({ bananas: res.body })
+        $('button#backBtn').click(function(){
+          console.log('back button!')
+          
         })
-        return false;
-    });
+      });
+  }

@@ -20,11 +20,11 @@ app.get('/', function (req, res) {
 app.post('/', function (req, res) {
   console.log('this is server receiving the post', req.body)
 
-  fs.readFile('banana.js', 'utf8', function(err, data) {
+  fs.readFile('banana.JSON', 'utf8', function(err, data) {
     console.log('this is data: ', data)
 
     // turn the data (which is a string) from JSON into an object.
-    var dataObject =  JSON.parse(data)
+    var dataObject = JSON.parse(data)
     console.log('dataObject: ', dataObject)
 
     // call the createNewObj function with new data enetered in the form, to
