@@ -3,22 +3,25 @@ var bananaStats = require('../views/bananaStats.hbs')
 var request = require('superagent')
 var $ = require('jquery')
 
+$(document).ready(function(){
+  $("button#addBananaData").click(function(){
+    addBananaData()
+  }); //close listener
+}) //close document ready
 
 
+  function addBananaData() {
+    var formData = $("form").serializeArray()
+    request
+      .post('/')
+      .send(formData)
+      .end(function(err, res) {
+      })
+    document.getElementById("form").reset()
+    return false;
+  }
 
-    $("button#addBananaData").click(function(){
-      var formData = $("form").serializeArray()
 
-      request
-        .post('/')
-        .send(formData)
-        .end(function(err, res) {
-          console.log('this is res.body: ', res.body)
-        })
-        document.getElementById("form").reset()
-
-      return false;
-    });
 
 
 
