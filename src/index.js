@@ -31,9 +31,5 @@ $(document).ready(function(){
       .get('http://localhost:3000/bananas')
       .end(function(err, res) {
         document.body.innerHTML = bananaStats({ bananas: res.body })
-        $('button#backBtn').click(function(){
-          console.log('back button!')
-          
-        })
       });
   }
