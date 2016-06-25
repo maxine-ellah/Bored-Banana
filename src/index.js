@@ -8,8 +8,8 @@ $(document).ready(function(){
     addBananaData()
   }) //close addBanana listener
   $("button#showBananas").click(function(e){
-    e.preventDefault();
     showBananaData()
+    e.preventDefault()
   }) //close showBananas listener
 
 }) //close document ready
@@ -30,7 +30,9 @@ $(document).ready(function(){
     request
       .get('http://localhost:3000/bananas')
       .end(function(err, res) {
-        console.log(err);
         document.body.innerHTML = bananaStats({ bananas: res.body })
+        $('button#backBtn').click(function(){
+          console.log('back button!')
+        })
       });
   }
