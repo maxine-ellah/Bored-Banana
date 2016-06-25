@@ -4,7 +4,9 @@
 <p>When I bought them: {{this.dateBought}}</p>
 <p>How much they cost: ${{this.cost}}</p>
 
-<a class="startTimerServer" type="button" href="/bananas/{{this.id}}">Check freshness</a>
+<input class="startTimerServer" type="button" onclick="location.href='/bananas/{{this.id}}'" value="Check freshness"/>
 {{/each}}
+
 <br><br><br>
+
 <input type="button" onclick="location.href='/';"  value="Go back"/>
