@@ -30,7 +30,7 @@ $(document).ready(function(){
       .get('http://localhost:3000/bananas')
       .end(function(err, res) {
         console.log('res.body', res.body);
-        document.body.innerHTML = bananaStats({ bananas: res.body })
+        $('body').html(bananaStats({ bananas: res.body }))
         $(".startTimerServer").click(function(){
           console.log($(this).data("id"));
           startTimer($(this).data("id"))
