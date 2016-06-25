@@ -42,8 +42,10 @@ $(document).ready(function(){
     request
     .get('http://localhost:3000/bananas/' + id)
     .end(function(err, res){
-      console.log('res.body in startTimer function: ', res.body);
-      // document.body.innerHTML = timerPage(res.body)
+      console.log('res.body in startTimer function: ', res.body)
       $('body').html(timerPage(res.body))
+      $('#backBtn').click(function(){
+        showBananaData()
+      })
     })
   }
