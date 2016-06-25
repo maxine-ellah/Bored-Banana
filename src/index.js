@@ -7,9 +7,11 @@ $(document).ready(function(){
   $("button#addBananaData").click(function(){
     addBananaData()
   }) //close addBanana listener
-  $("button#showBananas").click(function(){
+  $("button#showBananas").click(function(e){
+    e.preventDefault();
     showBananaData()
   }) //close showBananas listener
+
 }) //close document ready
 
 
@@ -19,9 +21,8 @@ $(document).ready(function(){
       .post('/')
       .send(formData)
       .end(function(err, res) {
+        document.getElementById("form").reset()
       })
-    document.getElementById("form").reset()
-    return false;
   }
 
 
@@ -29,7 +30,7 @@ $(document).ready(function(){
     request
       .get('http://localhost:3000/bananas')
       .end(function(err, res) {
-        document.body.innerHTML = bananaStats({ bananas: res.body });
-      })
-      return false;
+        console.log(err);
+        document.body.innerHTML = bananaStats({ bananas: res.body })
+      });
   }
