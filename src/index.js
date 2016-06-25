@@ -33,6 +33,7 @@ $(document).ready(function(){
         document.body.innerHTML = bananaStats({ bananas: res.body })
         $('button#backBtn').click(function(){
           console.log('back button!')
+          
         })
       });
   }
