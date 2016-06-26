@@ -1,5 +1,5 @@
 var bananaStats = require('../views/bananaStats.hbs')
-//var timerPage = require('./views/timerPage.hbs')
+var timerPage = require('../views/timerPage.hbs')
 var request = require('superagent')
 var $ = require('jquery')
 
@@ -25,15 +25,24 @@ $(document).ready(function(){
       })
   }
 
-
   function showBananaData() {
     request
       .get('http://localhost:3000/bananas')
       .end(function(err, res) {
-        document.body.innerHTML = bananaStats({ bananas: res.body })
-        $('button#backBtn').click(function(){
-          console.log('back button!')
-          
+        $('body').html(bananaStats({ bananas: res.body }))
+        $(".startTimerServer").click(function(){
+          startTimer($(this).data("id"))
         })
       });
+  }
+
+  function startTimer(id){
+    request
+    .get('http://localhost:3000/bananas/' + id)
+    .end(function(err, res){
+      $('body').html(timerPage(res.body))
+      $('#backBtn').click(function(){
+        showBananaData()
+      })
+    })
   }
