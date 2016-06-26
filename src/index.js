@@ -29,7 +29,6 @@ $(document).ready(function(){
     request
       .get('http://localhost:3000/bananas')
       .end(function(err, res) {
-        console.log('res.body', res.body);
         $('body').html(bananaStats({ bananas: res.body }))
         $(".startTimerServer").click(function(){
           startTimer($(this).data("id"))
@@ -41,7 +40,6 @@ $(document).ready(function(){
     request
     .get('http://localhost:3000/bananas/' + id)
     .end(function(err, res){
-      console.log('res.body in startTimer function: ', res.body)
       $('body').html(timerPage(res.body))
       $('#backBtn').click(function(){
         showBananaData()

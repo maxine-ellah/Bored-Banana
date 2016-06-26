@@ -35,8 +35,6 @@ app.post('/', function (req, res) {
 
     // join that object with the req.body that came in
     var dataToSave = dataObject.concat(obj)
-      // console.log('dataToSave: ', dataToSave, 'dataToSaves type: ', typeof dataToSave)
-
 
     // write the result
     fs.writeFile('banana.JSON', JSON.stringify(dataToSave), function(err){
@@ -45,7 +43,6 @@ app.post('/', function (req, res) {
     })
   })
 
-  // res.send('bananaStats', req.body)
   res.send('ok')
 })
 
@@ -69,8 +66,6 @@ app.get('/bananas/:id', function (req, res) {
     var bananaId = req.params.id -1
     var selectedBanana = JSON.parse(data)[bananaId]
     console.log(JSON.parse(data), bananaId)
-
-    // res.render('timerPage', { time: selectedBanana.dateBought, cost: selectedBanana.cost })
     res.json(selectedBanana)
 
   })
