@@ -32,7 +32,6 @@ $(document).ready(function(){
         console.log('res.body', res.body);
         $('body').html(bananaStats({ bananas: res.body }))
         $(".startTimerServer").click(function(){
-          console.log($(this).data("id"));
           startTimer($(this).data("id"))
         })
       });
