@@ -2,3 +2,19 @@ body {
   background-image: url('boredbanana2.png');
   text-align: center;
 }
+
+#addBananaData {
+  background-color: white;
+}
+
+#showBananas {
+  background-color: white;
+}
+
+#startTimerServer {
+  background-color: white;
+}
+
+#backBtn {
+  background-color: white;
+}
