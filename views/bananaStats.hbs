@@ -1,3 +1,5 @@
+<input type="button" onclick="location.href='/';"  value="Go back"/>
+
 {{#each bananas}}
 <h4>Yo, I'm banana #{{this.id}}</h4>
 <p>How many I bought: {{this.quantity}}</p>
@@ -7,7 +9,3 @@
 <input class="startTimerServer" type="button" data-id={{this.id}} value="Check freshness"/>
 
 {{/each}}
-
-<br><br><br>
-
-<input type="button" onclick="location.href='/';"  value="Go back"/>
