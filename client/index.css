@@ -17,4 +17,6 @@ input.startTimerServer {
 
 #backBtn {
   background-color: white;
+  margin-bottom: 40px;
+  margin-top: 15px;
 }
