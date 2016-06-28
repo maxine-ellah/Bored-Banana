@@ -32,7 +32,6 @@ $(document).ready(function(){
 
     var formData = {quantity: quantity, dateBought: dateBought, cost: cost}
 
-    
     request
       .post('/')
       .send(formData)
