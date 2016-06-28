@@ -22,38 +22,10 @@ app.get('/', function (req, res) {
   res.render('index');
 });
 
-// app.post('/', function (req, res) {
-//   console.log('this is server receiving the post', req.body)
-//
-//   fs.readFile('banana.JSON', 'utf8', function(err, data) {
-//     console.log('this is data: ', data)
-//
-//     // turn the data (which is a string) from JSON into an object.
-//     var dataObject = JSON.parse(data)
-//     console.log('dataObject: ', dataObject)
-//
-//     // call the createNewObj function with new data enetered in the form, to
-//     // create new object
-//     var obj = createNewBananaObj(dataObject.length +1, req.body[0].value, req.body[1].value, req.body[2].value)
-//      console.log('this is obj: ', obj)
-//
-//
-//     // join that object with the req.body that came in
-//     var dataToSave = dataObject.concat(obj)
-//
-//     // write the result
-//     fs.writeFile('banana.JSON', JSON.stringify(dataToSave), function(err){
-//       if (err) console.log (err)
-//       console.log('wrote file fine')
-//     })
-//   })
-//
-//   res.send('ok')
-// })
 
 
 app.post('/', function (req, res) {
-  console.log('this is server receiving the post: ', req.body)
+  console.log('this is server req.body: ', req.body)
   knex('bananas')
   .insert({quantity: req.body.quantity, dateBought: req.body.dateBought, cost: req.body.cost})
   .then(function (data) {
