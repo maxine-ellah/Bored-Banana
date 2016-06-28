@@ -54,8 +54,11 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
   console.log('this is server receiving the post: ', req.body)
-  // knex('bananas').insert({quantity: })
-
+  knex('bananas')
+  .insert({quantity: req.body.quantity, dateBought: req.body.dateBought, cost: req.body.cost})
+  .then(function (data) {
+    console.log('data from knex insert: ', data)
+  })
     res.send('ok')
     })
 
