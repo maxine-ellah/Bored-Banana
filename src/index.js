@@ -15,8 +15,24 @@ $(document).ready(function(){
 }) //close document ready
 
 
+  // function addBananaData() {
+  //   var formData = $("form").serializeArray()
+  //   request
+  //     .post('/')
+  //     .send(formData)
+  //     .end(function(err, res) {
+  //       document.getElementById("form").reset()
+  //     })
+  // }
+
   function addBananaData() {
-    var formData = $("form").serializeArray()
+    var quantity = document.getElementById('quantity').value
+    var dateBought = document.getElementById('dateBought').value
+    var cost = document.getElementById('cost').value
+
+    var formData = {quantity: quantity, dateBought: dateBought, cost: cost}
+
+    // var formData = $("form").serializeArray()
     request
       .post('/')
       .send(formData)
