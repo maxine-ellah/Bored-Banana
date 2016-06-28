@@ -11,6 +11,7 @@ This was the first project I made at Dev Academy, and it was built as a prototyp
 
 **Here's how it works:**
 
+1. **npm i**, then rev up your server with **npm start** and watchify with **npm run watch**
 1. Buy some bananas
 2. Enter their details; quantity, date bought and total cost
 3. Add your bananas to the database by clicking the 'add banana data' button
