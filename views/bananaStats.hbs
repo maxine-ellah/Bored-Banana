@@ -3,12 +3,10 @@
 
         {{#each bananas}}
 
-
         <h4>Yo, I'm banana #{{this.id}}</h4>
         <p>How many I bought: {{this.quantity}}</p>
         <p>When I bought them: {{this.dateBought}}</p>
         <p>How much they cost: ${{this.cost}}</p>
 
-        <input id="startTimerServer" type="button" data-id={{this.id}} value="Check freshness"/>
-
-{{/each}}
+        <input class="startTimerServer" type="button" data-id={{this.id}} value="Check freshness"/>
+        {{/each}}
