@@ -1,10 +1,20 @@
-main {
+body {
+  background-image: url('boredbanana2.png');
   text-align: center;
 }
 
-body {
-  background-image: url('boredbanana2.png');
+#addBananaData {
+  background-color: white;
 }
 
+#showBananas {
+  background-color: white;
+}
 
+#startTimerServer {
+  background-color: white;
+}
 
+#backBtn {
+  background-color: white;
+}
