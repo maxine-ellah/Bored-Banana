@@ -35,8 +35,6 @@ app.post('/', function (req, res) {
     })
 
 
-
-
 app.get('/bananas', function (req, res) {
   fs.readFile('banana.JSON', 'utf8', function(err, data) {
   if (err) {

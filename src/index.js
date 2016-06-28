@@ -32,7 +32,7 @@ $(document).ready(function(){
 
     var formData = {quantity: quantity, dateBought: dateBought, cost: cost}
 
-    // var formData = $("form").serializeArray()
+    
     request
       .post('/')
       .send(formData)
