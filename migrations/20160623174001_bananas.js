@@ -2,6 +2,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTableIfNotExists('bananas', function(table){
        table.increments('id')
+       table.integer('userId')
        table.integer('quantity')
        table.string('dateBought')
        table.integer('cost')
