@@ -15,16 +15,6 @@ $(document).ready(function(){
 }) //close document ready
 
 
-  // function addBananaData() {
-  //   var formData = $("form").serializeArray()
-  //   request
-  //     .post('/')
-  //     .send(formData)
-  //     .end(function(err, res) {
-  //       document.getElementById("form").reset()
-  //     })
-  // }
-
   function addBananaData() {
     var quantity = document.getElementById('quantity').value
     var dateBought = document.getElementById('dateBought').value
@@ -55,6 +45,7 @@ $(document).ready(function(){
     request
     .get('http://localhost:3000/bananas/' + id)
     .end(function(err, res){
+      console.log('res.body: ',res.body);
       $('body').html(timerPage(res.body))
       $('#backBtn').click(function(){
         showBananaData()

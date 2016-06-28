@@ -35,16 +35,6 @@ app.post('/', function (req, res) {
     })
 
 
-// app.get('/bananas', function (req, res) {
-//   fs.readFile('banana.JSON', 'utf8', function(err, data) {
-//   if (err) {
-//     console.log(err)
-//   }
-//     console.log('data inside fs.readfile: ', data);
-//    res.json(JSON.parse(data))
-//   })
-// })
-
 app.get('/bananas', function (req, res) {
   knex.select()
   .from('bananas')
@@ -55,20 +45,30 @@ app.get('/bananas', function (req, res) {
 })
 
 app.get('/bananas/:id', function (req, res) {
-  //grab the banana from the json file by it's id,
-  fs.readFile('banana.JSON', 'utf8', function(err, data) {
-    if (err) {
-    console.log(err)
-  }
-    console.log("req.params: ", req.params, "data: ", data)
-
-    var bananaId = req.params.id -1
-    var selectedBanana = JSON.parse(data)[bananaId]
-    console.log(JSON.parse(data), bananaId)
-    res.json(selectedBanana)
-
+  console.log("req.params: ", req.params);
+  knex('bananas')
+  .where({id: req.params.id})
+  .then(function(data){
+    res.json(data[0]);
   })
 })
+
+//
+// app.get('/bananas/:id', function (req, res) {
+//   //grab the banana from the json file by it's id,
+//   fs.readFile('banana.JSON', 'utf8', function(err, data) {
+//     if (err) {
+//     console.log(err)
+//   }
+//     // console.log("req.params: ", req.params, "data: ", data)
+//
+//     var bananaId = req.params.id -1
+//     var selectedBanana = JSON.parse(data)[bananaId]
+//     console.log('selectedBanana: ', selectedBanana)
+//     res.json(selectedBanana)
+//
+//   })
+// })
 
 
 app.listen(3000, function () {
