@@ -27,7 +27,7 @@ app.get('/', function (req, res) {
 app.post('/', function (req, res) {
   console.log('this is server req.body: ', req.body)
   knex('bananas')
-  .insert({quantity: req.body.quantity, dateBought: req.body.dateBought, cost: req.body.cost})
+  .insert({quantity: req.body.quantity, dateBought: req.body.dateBought, cost: req.body.cost, timeEntered: moment()})
   .then(function (data) {
     console.log('data from knex insert: ', data)
   })
@@ -35,12 +35,22 @@ app.post('/', function (req, res) {
     })
 
 
+// app.get('/bananas', function (req, res) {
+//   fs.readFile('banana.JSON', 'utf8', function(err, data) {
+//   if (err) {
+//     console.log(err)
+//   }
+//     console.log('data inside fs.readfile: ', data);
+//    res.json(JSON.parse(data))
+//   })
+// })
+
 app.get('/bananas', function (req, res) {
-  fs.readFile('banana.JSON', 'utf8', function(err, data) {
-  if (err) {
-    console.log(err)
-  }
-   res.json(JSON.parse(data))
+  knex.select()
+  .from('bananas')
+  .then(function(data){
+    console.log('data from knex select: ', data);
+    res.json(data)
   })
 })
 
