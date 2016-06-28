@@ -87,3 +87,5 @@ function createNewBananaObj(givenId, givenQuantity, givenDateBought, givenCost) 
   newObj.timeEntered = moment()
   return newObj
 }
+
+module.exports = app;
