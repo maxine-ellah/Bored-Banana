@@ -11,10 +11,12 @@ body {
   background-color: white;
 }
 
-#startTimerServer {
+input.startTimerServer {
   background-color: white;
 }
 
 #backBtn {
   background-color: white;
+  margin-bottom: 40px;
+  margin-top: 15px;
 }

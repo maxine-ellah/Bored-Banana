@@ -16,7 +16,12 @@ $(document).ready(function(){
 
 
   function addBananaData() {
-    var formData = $("form").serializeArray()
+    var quantity = document.getElementById('quantity').value
+    var dateBought = document.getElementById('dateBought').value
+    var cost = document.getElementById('cost').value
+
+    var formData = {quantity: quantity, dateBought: dateBought, cost: cost}
+    
     request
       .post('/')
       .send(formData)
@@ -40,6 +45,7 @@ $(document).ready(function(){
     request
     .get('http://localhost:3000/bananas/' + id)
     .end(function(err, res){
+      console.log('res.body: ',res.body);
       $('body').html(timerPage(res.body))
       $('#backBtn').click(function(){
         showBananaData()
