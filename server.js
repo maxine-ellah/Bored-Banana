@@ -28,12 +28,17 @@ app.get('/', function (req, res) {
 
 app.post('/signUp', function (req, res) {
   console.log('req.body in signUp route: ', req.body);
-  // knex('users')
+  knex('users')
+  .insert({name: req.body.name, email: req.body.email, hashedPassword: req.body.password})
+  .then(function(data) {
+    res.redirect('/')
+  })
 
 })
 
 app.post('/login', function (req, res) {
   console.log('req.body in login route: ', req.body);
+  res.redirect('/')
 })
 
 app.post('/', function (req, res) {
