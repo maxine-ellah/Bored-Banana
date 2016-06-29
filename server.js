@@ -3,7 +3,6 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 var fs = require('fs')
-var bananas = require('./banana.JSON')
 var moment = require('moment')
 var Knex = require('knex')
 
