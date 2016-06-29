@@ -53,36 +53,7 @@ app.get('/bananas/:id', function (req, res) {
   })
 })
 
-//
-// app.get('/bananas/:id', function (req, res) {
-//   //grab the banana from the json file by it's id,
-//   fs.readFile('banana.JSON', 'utf8', function(err, data) {
-//     if (err) {
-//     console.log(err)
-//   }
-//     // console.log("req.params: ", req.params, "data: ", data)
-//
-//     var bananaId = req.params.id -1
-//     var selectedBanana = JSON.parse(data)[bananaId]
-//     console.log('selectedBanana: ', selectedBanana)
-//     res.json(selectedBanana)
-//
-//   })
-// })
-
 
 app.listen(3000, function () {
   console.log('A Bored Banana is listening on port 3000!');
 });
-
-
-function createNewBananaObj(givenId, givenQuantity, givenDateBought, givenCost) {
-  var newObj = {}
-  newObj.id = givenId
-  newObj.quantity = givenQuantity
-  newObj.dateBought = moment(givenDateBought).format()
-  // newObj.dateBoughtStamp = moment(givenDateBought)
-  newObj.cost = givenCost
-  newObj.timeEntered = moment()
-  return newObj
-}
