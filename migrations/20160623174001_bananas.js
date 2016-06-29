@@ -5,8 +5,8 @@ exports.up = function(knex, Promise) {
        table.integer('userId')
        table.integer('quantity')
        table.string('dateBought')
-       table.integer('cost')
-       table.string('timeEntered')
+       table.decimal('cost')
+       table.timestamp('timeEntered')
        console.log('bananas table was created!!')
      })
 };
