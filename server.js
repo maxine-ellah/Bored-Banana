@@ -38,8 +38,19 @@ app.post('/signUp', function (req, res) {
 
 app.post('/login', function (req, res) {
   console.log('req.body in login route: ', req.body);
-  res.redirect('/')
-})
+  if(req.body.email === '') {
+    console.log('no email entered!');
+    return res.redirect('/')
+  }
+  knex('users')
+  .where({email: req.body.email})
+  .then(function(data) {
+    console.log('data in where clause in /login: ', data);
+      res.redirect('/')
+    })
+
+  })
+
 
 app.post('/', function (req, res) {
   console.log('this is server req.body: ', req.body)
