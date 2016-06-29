@@ -2,11 +2,10 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
-var fs = require('fs')
 var moment = require('moment')
+var bcrypt = require('bcrypt-node')
 var Knex = require('knex')
-var passport = require('passport')
-, LocalStrategy = require('passport-local').Strategy;
+
 
 
 var knexConfig = require('./knexfile')
@@ -27,9 +26,10 @@ app.get('/', function (req, res) {
 });
 
 app.post('/signUp', function (req, res) {
-  console.log('req.body in signUp route: ', req.body);
+  console.log('req.body in signUp route: ', req.body)
+  var hash = bcrypt.hashSync(req.body.password)
   knex('users')
-  .insert({name: req.body.name, email: req.body.email, hashedPassword: req.body.password})
+  .insert({name: req.body.name, email: req.body.email, hashedPassword: hash})
   .then(function(data) {
     res.redirect('/')
   })
@@ -38,18 +38,27 @@ app.post('/signUp', function (req, res) {
 
 app.post('/login', function (req, res) {
   console.log('req.body in login route: ', req.body);
-  if(req.body.email === '') {
-    console.log('no email entered!');
+  if(req.body.email === '') { //first if to handle any empty string entered
+    console.log('no email entered!'); //as email
     return res.redirect('/')
   }
   knex('users')
   .where({email: req.body.email})
   .then(function(data) {
-    console.log('data in where clause in /login: ', data);
+    console.log('data in where clause in /login: ', data)
+    if (bcrypt.compareSync(req.body.password, data[0].hashedPassword)){
+      console.log('user number ' + data[0].userId + ' has successfully logged in!!');
       res.redirect('/')
-    })
-
+    } else {
+      console.log('incorrect password!')
+      res.redirect('/')
+      }
   })
+  .catch(function(err){
+    console.log('error: ', err)
+    res.sendStatus(403)
+  })
+})
 
 
 app.post('/', function (req, res) {
