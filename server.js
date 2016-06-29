@@ -5,6 +5,9 @@ var bodyParser = require('body-parser');
 var fs = require('fs')
 var moment = require('moment')
 var Knex = require('knex')
+var passport = require('passport')
+, LocalStrategy = require('passport-local').Strategy;
+
 
 var knexConfig = require('./knexfile')
 var env = process.env.NODE_ENV || 'development'
@@ -17,11 +20,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static('client'));
 
+
+
 app.get('/', function (req, res) {
   res.render('index');
 });
 
+app.post('/signUp', function (req, res) {
 
+})
+
+app.post('/login', function (req, res) {
+
+})
 
 app.post('/', function (req, res) {
   console.log('this is server req.body: ', req.body)
@@ -56,3 +67,5 @@ app.get('/bananas/:id', function (req, res) {
 app.listen(3000, function () {
   console.log('A Bored Banana is listening on port 3000!');
 });
+
+module.exports = app;
