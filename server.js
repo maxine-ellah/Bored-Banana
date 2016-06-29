@@ -27,7 +27,7 @@ app.get('/', function (req, res) {
 app.post('/', function (req, res) {
   console.log('this is server req.body: ', req.body)
   knex('bananas')
-  .insert({quantity: req.body.quantity, dateBought: req.body.dateBought, cost: req.body.cost, timeEntered: moment()})
+  .insert({quantity: req.body.quantity, dateBought: moment(req.body.dateBought).format("dddd, MMMM Do YYYY"), cost: req.body.cost, timeEntered: moment()})
   .then(function (data) {
     console.log('data from knex insert: ', data)
   })

@@ -21,7 +21,7 @@ $(document).ready(function(){
     var cost = document.getElementById('cost').value
 
     var formData = {quantity: quantity, dateBought: dateBought, cost: cost}
-
+    console.log('formData', formData);
     request
       .post('/')
       .send(formData)
