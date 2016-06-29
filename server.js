@@ -27,11 +27,13 @@ app.get('/', function (req, res) {
 });
 
 app.post('/signUp', function (req, res) {
+  console.log('req.body in signUp route: ', req.body);
+  // knex('users')
 
 })
 
 app.post('/login', function (req, res) {
-
+  console.log('req.body in login route: ', req.body);
 })
 
 app.post('/', function (req, res) {

@@ -15,6 +15,38 @@
 
   <h1>bored banana</h1>
 
+  <form action="/signUp" method="post">
+    <div>
+        <label>Name:</label>
+        <input type="text" name="name"/>
+    </div>
+    <div>
+        <label>Email:</label>
+        <input type="text" name="email"/>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" name="password"/>
+    </div>
+    <div>
+        <input type="submit" value="Sign Up"/>
+    </div>
+</form>
+
+<form action="/login" method="post">
+  <div>
+      <label>Email:</label>
+      <input type="text" name="email"/>
+  </div>
+  <div>
+      <label>Password:</label>
+      <input type="password" name="password"/>
+  </div>
+  <div>
+      <input type="submit" value="Login"/>
+  </div>
+</form>
+
   <form>
     <input id="quantity" type="number" name="quantity" placeholder="how many?">
     <input id="dateBought" type="date" name="dateBought" placeholder="when?">
