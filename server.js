@@ -21,27 +21,31 @@ app.use(express.static('client'));
 app.use(session({ secret: 'cinnamon bun', resave: false, saveUninitialized: false }))
 
 
+function getUserId () {
+  return knex('bananas').max('userId')
+}
+
 app.get('/', function (req, res) {
   res.render('index');
 });
 
 app.post('/signUp', function (req, res) {
-  console.log('req.body in signUp route: ', req.body)
   var hash = bcrypt.hashSync(req.body.password)
   knex('users')
   .whereIn('name', req.body.name)
   .then(function(data){
-    console.log('data from whereIn query: ', data);
     if(data.length !== 0){
-      console.log('name is taken');
       res.redirect('/')
-      // console.log('name isnt taken, can write to db & save in session');
     } else {
-      req.session.userId = req.body.name
-      console.log('req.session: ', req.session);
-      return knex('users')
+      knex('users')
       .insert({name: req.body.name, email: req.body.email, hashedPassword: hash})
+      .then(function() {
+        return knex('users').max('userId')
+      })
       .then(function(data) {
+        req.session.userId = data[0].max
+        req.session.save()
+        console.log('user ' + req.session.userId + ' is in session!');
         res.redirect('/')
       })
       }
