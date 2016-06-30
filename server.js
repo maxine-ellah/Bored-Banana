@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var moment = require('moment')
 var bcrypt = require('bcrypt-node')
 var Knex = require('knex')
-
+var session = require('express-session');
 
 
 var knexConfig = require('./knexfile')
@@ -17,6 +17,7 @@ app.set('view engine', 'hbs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('client'));
+
 app.use(session({ secret: 'cinnamon bun', resave: false, saveUninitialized: false }))
 
 
@@ -28,11 +29,21 @@ app.post('/signUp', function (req, res) {
   console.log('req.body in signUp route: ', req.body)
   var hash = bcrypt.hashSync(req.body.password)
   knex('users')
-  .insert({name: req.body.name, email: req.body.email, hashedPassword: hash})
-  .then(function(data) {
-    res.redirect('/')
+  .whereIn('name', req.body.name)
+  .then(function(data){
+    console.log('data from whereIn query: ', data);
+    if(data.length !== 0){
+      console.log('name is taken');
+      res.redirect('/')
+      // console.log('name isnt taken, can write to db & save in session');
+    }
   })
-
+  // knex('users')
+  // .insert({name: req.body.name, email: req.body.email, hashedPassword: hash})
+  // .then(function(data) {
+  //   console.log('data after insert into user table: ', data);
+    // res.redirect('/')
+  // })
 })
 
 app.post('/login', function (req, res) {
@@ -62,7 +73,7 @@ app.post('/login', function (req, res) {
 
 app.post('/', function (req, res) {
   console.log('this is server req.body: ', req.body)
-  knex('bananas')
+  knex('bananas') //also want to insert userId in table here, which is stored in req.session.userId
   .insert({quantity: req.body.quantity, dateBought: moment(req.body.dateBought).format("dddd, MMMM Do YYYY"), cost: req.body.cost, timeEntered: moment()})
   .then(function (data) {
     console.log('data from knex insert: ', data)
