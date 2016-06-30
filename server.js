@@ -37,7 +37,7 @@ app.post('/signUp', function (req, res) {
       res.redirect('/')
       // console.log('name isnt taken, can write to db & save in session');
     } else {
-      req.session.name = req.body.name
+      req.session.userId = req.body.name
       console.log('req.session: ', req.session);
       return knex('users')
       .insert({name: req.body.name, email: req.body.email, hashedPassword: hash})
@@ -63,6 +63,8 @@ app.post('/login', function (req, res) {
   .then(function(data) {
     console.log('data in where clause in /login: ', data)
     if (bcrypt.compareSync(req.body.password, data[0].hashedPassword)){
+      req.session.userId = data[0].userId
+      req.session.save()
       console.log('user number ' + data[0].userId + ' has successfully logged in!!');
       res.redirect('/')
     } else {
@@ -76,32 +78,52 @@ app.post('/login', function (req, res) {
   })
 })
 
+app.get('/logout', function (req, res) {
+  console.log('u have logged out!');
+  req.session.destroy()
+  console.log('req.session after logout: ', req.session);
+  res.redirect('/')
+})
 
 app.post('/', function (req, res) {
   console.log('this is server req.body: ', req.body)
-  knex('bananas') //also want to insert userId in table here, which is stored in req.session.userId
-  .insert({quantity: req.body.quantity, dateBought: moment(req.body.dateBought).format("dddd, MMMM Do YYYY"), cost: req.body.cost, timeEntered: moment()})
-  .then(function (data) {
-    console.log('data from knex insert: ', data)
-  })
-    res.send('ok')
+  if(!req.session.userId){
+    console.log('You need to log in!');
+    res.redirect('/')
+  } else {
+    knex('bananas') //also want to insert userId in table here, which is stored in req.session.userId
+    .insert({userId: req.session.userId, quantity: req.body.quantity, dateBought: moment(req.body.dateBought).format("dddd, MMMM Do YYYY"), cost: req.body.cost, timeEntered: moment()})
+    .then(function (data) {
+      console.log('req.session after knex insert: ', req.session)
     })
+      res.send('ok')
+      }
+  })
+
 
 
 app.get('/bananas', function (req, res) {
-  knex.select()
-  .from('bananas')
-  .then(function(data){
-    console.log('data from knex select: ', data);
-    res.json(data)
-  })
+  if(!req.session.userId){
+    console.log('You need to log in!');
+    res.redirect('/')
+  } else {
+    knex.select()
+    .from('bananas')
+    .then(function(data){
+      console.log('data from knex select: ', data);
+      console.log('req.session after knex insert: ', req.session)
+      res.json(data)
+    })
+  }
 })
+
 
 app.get('/bananas/:id', function (req, res) {
   console.log("req.params: ", req.params);
   knex('bananas')
   .where({id: req.params.id})
   .then(function(data){
+    console.log('req.session after knex insert: ', req.session)
     res.json(data[0]);
   })
 })
