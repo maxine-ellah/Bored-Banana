@@ -36,14 +36,20 @@ app.post('/signUp', function (req, res) {
       console.log('name is taken');
       res.redirect('/')
       // console.log('name isnt taken, can write to db & save in session');
-    }
+    } else {
+      req.session.name = req.body.name
+      console.log('req.session: ', req.session);
+      return knex('users')
+      .insert({name: req.body.name, email: req.body.email, hashedPassword: hash})
+      .then(function(data) {
+        res.redirect('/')
+      })
+      }
   })
-  // knex('users')
-  // .insert({name: req.body.name, email: req.body.email, hashedPassword: hash})
-  // .then(function(data) {
-  //   console.log('data after insert into user table: ', data);
-    // res.redirect('/')
-  // })
+  .catch(function(err){
+    console.log('error: ', err);
+    res.redirect('/')
+  })
 })
 
 app.post('/login', function (req, res) {
