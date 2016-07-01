@@ -1,9 +1,22 @@
-<h5>Sign up</h5>
-     <form action='/signup' method='POST'>
-      <input class="inputFullWidth" type='text' placeholder="email" name='email' autofocus></input>
-      <br>
-      <input class="inputFullWidth" type='password' placeholder="password" name='password'></input>
-      <br>
-      <input class="inputFullWidth sign-up-button" type='submit' value='signUp'></input>
+<h5 id="signUpHeader">Sign up</h5>
+<!-- <form action="/signUp" method="post"> -->
+<form>
+  <div>
+      <label>Name:</label>
+      <input id="name" type="text" name="name"/>
+  </div>
+  <div>
+      <label>Email:</label>
+      <input id="email" type="text" name="email"/>
+  </div>
+  <div>
+      <label>Password:</label>
+      <input id="password" type="password" name="password"/>
+  </div>
+  <!-- <div>
+      <input type="submit" value="Sign Up"/>
+  </div> -->
 
-    	</form>
+    <button id="submitSignUp">Sign up</button>
+
+</form>

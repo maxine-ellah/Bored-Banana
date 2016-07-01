@@ -12,56 +12,72 @@ var knexConfig = require('./knexfile')
 var env = process.env.NODE_ENV || 'development'
 var knex = Knex(knexConfig[env])
 
+app.use(express.static('client'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static('client'));
 
 app.use(session({ secret: 'cinnamon bun', resave: false, saveUninitialized: false }))
 
-
 function getUserId () {
-  return knex('bananas').max('userId')
+  return knex('users').max('userId')
 }
 
+
 app.get('/', function (req, res) {
+  console.log('req.session in /', req.session);
   res.render('index');
 });
+
+app.get('/signUp', function (req, res) {
+  console.log('res.body in GET /signUp: ', res.body);
+  res.render('signUp')
+})
 
 app.post('/signUp', function (req, res) {
   var hash = bcrypt.hashSync(req.body.password)
   knex('users')
   .whereIn('name', req.body.name)
   .then(function(data){
-    if(data.length !== 0){
-      res.redirect('/')
+    if (data.length !== 0){
+      console.log('data in /signUp: ', data);
+      res.send('Sorry, that username is taken. Please choose another one.')
     } else {
       knex('users')
       .insert({name: req.body.name, email: req.body.email, hashedPassword: hash})
       .then(function() {
-        return knex('users').max('userId')
+        return getUserId()
       })
-      .then(function(data) {
+      .then(function(data) { //perhaps write function to set and save session here
         req.session.userId = data[0].max
         req.session.save()
-        console.log('user ' + req.session.userId + ' is in session!');
-        res.redirect('/')
+        console.log('user ' + req.session.userId + ' successfully signed up!');
+        return res.json(data)
       })
       }
   })
   .catch(function(err){
     console.log('error: ', err);
-    res.redirect('/')
+    res.send('Please, refresh the page and try again.')
   })
 })
 
+// app.get('/login', function(req, res){
+//   console.log('res.body in GET /login: ', res.body);
+//   res.end()
+// })
+
 app.post('/login', function (req, res) {
-  console.log('req.body in login route: ', req.body);
+
+  console.log('req.body in login route: ', req.body); //production console.logs to check
+  console.log('req.session in login route: ', req.session);//login and session data.
+
   if(req.body.email === '') { //first if to handle any empty string entered
     console.log('no email entered!'); //as email
     return res.redirect('/')
   }
+
   knex('users')
   .where({email: req.body.email})
   .then(function(data) {
@@ -90,12 +106,15 @@ app.get('/logout', function (req, res) {
 })
 
 app.post('/', function (req, res) {
+
+  console.log('req.session in / post route: ', req.session);
   console.log('this is server req.body: ', req.body)
+
   if(!req.session.userId){
     console.log('You need to log in!');
     res.redirect('/')
   } else {
-    knex('bananas') //also want to insert userId in table here, which is stored in req.session.userId
+    knex('bananas')
     .insert({userId: req.session.userId, quantity: req.body.quantity, dateBought: moment(req.body.dateBought).format("dddd, MMMM Do YYYY"), cost: req.body.cost, timeEntered: moment()})
     .then(function (data) {
       console.log('req.session after knex insert: ', req.session)
@@ -107,6 +126,9 @@ app.post('/', function (req, res) {
 
 
 app.get('/bananas', function (req, res) {
+
+  console.log('req.session in /bananas route: ', req.session);
+
   if(!req.session.userId){
     console.log('You need to log in!');
     res.redirect('/')
@@ -123,7 +145,10 @@ app.get('/bananas', function (req, res) {
 
 
 app.get('/bananas/:id', function (req, res) {
-  console.log("req.params: ", req.params);
+
+  console.log('req.session in /bananas/:id route: ', req.session);
+  console.log("req.params in /bananas/:id route: ", req.params);
+
   knex('bananas')
   .where({id: req.params.id})
   .then(function(data){
@@ -133,7 +158,7 @@ app.get('/bananas/:id', function (req, res) {
 })
 
 
-app.listen(3000, function () {
+app.listen(3000, function (req, res) {
   console.log('A Bored Banana is listening on port 3000!');
 });
 
