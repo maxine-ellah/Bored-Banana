@@ -24,17 +24,11 @@ function getUserId () {
   return knex('users').max('userId')
 }
 
-
 // app.get('/', function (req, res) {
 //   console.log('req.session in /', req.session);
 //   res.render('index');
 // });
 
-
-// app.get('/login', function(req, res){
-//   console.log('res.body in GET /login: ', res.body);
-//   res.end()
-// })
 
 app.post('/login', function (req, res) {
 
@@ -48,6 +42,7 @@ app.post('/login', function (req, res) {
     if (bcrypt.compareSync(req.body.password, data[0].hashedPassword)) {
       req.session.userId = data[0].userId
       req.session.save()
+      console.log('req.session', req.session);
       console.log('user number ' + data[0].userId + ' has successfully logged in!!');
       res.redirect('/')
     }
@@ -55,13 +50,8 @@ app.post('/login', function (req, res) {
   .catch(function(err){
       console.log('error: ', err)
       res.sendStatus('403')
-      // console.log('res in catch: ', res)
   })
-
 })
-
-
-
 
 app.get('/logout', function (req, res) {
   console.log('u have logged out!');

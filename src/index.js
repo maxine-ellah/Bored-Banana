@@ -17,6 +17,11 @@ $(document).ready(function(){
     e.preventDefault()
   }) //close showBananas listener
 
+  $("button#logout").click(function(){
+    console.log('logout button listening');
+    submitLogout()
+  }) //close logout listener
+
   $("button#signUp").click(function(){
     renderSignUp()
   }) //close signUp listener
@@ -69,7 +74,7 @@ $(document).ready(function(){
     var password = document.getElementById('password').value
 
     if (name.length === 0 || email.length === 0 || password.length === 0) {
-      document.getElementById("signUpHeader").innerHTML = "Please fill all fields bitch."
+      document.getElementById("header").innerHTML = "Please fill all fields bitch."
       return
     }
 
@@ -80,7 +85,15 @@ $(document).ready(function(){
     .send(signUpFormData)
     .end(function(err, res){
       $('body').html(bananaEntry)
-      // document.getElementById("header").innerHTML = "Bored Banana"
+    })
+  }
+
+  function submitLogout() {
+    console.log('submitLogout button');
+    request
+    .get('/logout')
+    .end(function(err, res){
+      console.log('User logged out!');
     })
   }
 
