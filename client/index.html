@@ -9,32 +9,42 @@
   <link href="index.css" rel="stylesheet"/>
 </head>
 
-<h1>bored banana</h1>
 
 <body>
-  <div class='container six columns offset-by-three'>
+
+<a href="/">
+  <h1 id="header">bored banana</h1>
+</a>
+
+  <div id="content">
+
+    <div class='container six columns offset-by-three'>
 
 
+    <form action="/login" method="post">
+      <div>
+          <label>Email:</label>
+          <input id="email" type="text" name="email"/>
+      </div>
+      <div>
+          <label>Password:</label>
+          <input id="password" type="password" name="password"/>
+      </div>
+      <!-- <div>
+          <input type="submit" value="Login"/>
+      </div> -->
+    </form>
 
-  <form action="/login" method="post">
-    <div>
-        <label>Email:</label>
-        <input type="text" name="email"/>
+    <button id="login">Login</button>
+    <button id="signUp">signUp</button>
+
+    <div id="error"></div>
+
     </div>
-    <div>
-        <label>Password:</label>
-        <input type="password" name="password"/>
-    </div>
-    <div>
-        <input type="submit" value="Login"/>
-    </div>
-  </form>
-
-  <button id="signUp">signUp</button>
-
   </div>
 
  </body>
+
  <script src='app.js'></script>
  <script src='apptimer.js'></script>
 </html>

@@ -21,17 +21,47 @@ $(document).ready(function(){
     renderSignUp()
   }) //close signUp listener
 
+  $("button#login").click(function(){
+    submitLogin()
+  }) //close login listener
+
   $("body").click(function(e) {
     if(e.target.id === "submitSignUp") {
       e.target.addEventListener('click', submitSignUp(), false)
       e.preventDefault()
-    }
-
-  })
+    } //close if statement
+  }) //close submitSignUp listener
 
   function renderSignUp() {
     $('body').html(signUpPage)
   }
+
+  function submitLogin() {
+    var email = document.getElementById('email').value
+    var password = document.getElementById('password').value
+
+    if (email.length === 0 || password.length === 0) {
+      document.getElementById("header").innerHTML = "Please fill all fields bitch."
+      return
+    }
+
+    var loginFormData = {email: email, password: password}
+
+    request
+    .post('/login')
+    .send(loginFormData)
+    .end(function(err, res) {
+      console.log('res in client /login: ', res);
+      console.log('err in client /login: ', err);
+      if(res.status === 200){
+        $('body').html(bananaEntry)
+      } else {
+        document.getElementById("error").innerHTML = "Oops, there was an error. Please try again."
+      }
+
+    })
+  }
+
 
   function submitSignUp() {
     var name = document.getElementById('name').value
@@ -49,9 +79,8 @@ $(document).ready(function(){
     .post('/signUp')
     .send(signUpFormData)
     .end(function(err, res){
-      console.log('res in client', res);
       $('body').html(bananaEntry)
-
+      // document.getElementById("header").innerHTML = "Bored Banana"
     })
   }
 

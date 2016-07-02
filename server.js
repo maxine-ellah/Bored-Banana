@@ -25,14 +25,49 @@ function getUserId () {
 }
 
 
-app.get('/', function (req, res) {
-  console.log('req.session in /', req.session);
-  res.render('index');
-});
+// app.get('/', function (req, res) {
+//   console.log('req.session in /', req.session);
+//   res.render('index');
+// });
 
-app.get('/signUp', function (req, res) {
-  console.log('res.body in GET /signUp: ', res.body);
-  res.render('signUp')
+
+// app.get('/login', function(req, res){
+//   console.log('res.body in GET /login: ', res.body);
+//   res.end()
+// })
+
+app.post('/login', function (req, res) {
+
+  console.log('req.body in login route: ', req.body); //production console.logs to check
+  console.log('req.session in login route: ', req.session);//login and session data.
+
+  knex('users')
+  .where({email: req.body.email})
+  .then(function(data) {
+    console.log('data in where clause in /login: ', data)
+    if (bcrypt.compareSync(req.body.password, data[0].hashedPassword)) {
+      req.session.userId = data[0].userId
+      req.session.save()
+      console.log('user number ' + data[0].userId + ' has successfully logged in!!');
+      res.redirect('/')
+    }
+  })
+  .catch(function(err){
+      console.log('error: ', err)
+      res.sendStatus('403')
+      // console.log('res in catch: ', res)
+  })
+
+})
+
+
+
+
+app.get('/logout', function (req, res) {
+  console.log('u have logged out!');
+  req.session.destroy()
+  console.log('req.session after logout: ', req.session);
+  res.redirect('/')
 })
 
 app.post('/signUp', function (req, res) {
@@ -63,47 +98,6 @@ app.post('/signUp', function (req, res) {
   })
 })
 
-// app.get('/login', function(req, res){
-//   console.log('res.body in GET /login: ', res.body);
-//   res.end()
-// })
-
-app.post('/login', function (req, res) {
-
-  console.log('req.body in login route: ', req.body); //production console.logs to check
-  console.log('req.session in login route: ', req.session);//login and session data.
-
-  if(req.body.email === '') { //first if to handle any empty string entered
-    console.log('no email entered!'); //as email
-    return res.redirect('/')
-  }
-
-  knex('users')
-  .where({email: req.body.email})
-  .then(function(data) {
-    console.log('data in where clause in /login: ', data)
-    if (bcrypt.compareSync(req.body.password, data[0].hashedPassword)){
-      req.session.userId = data[0].userId
-      req.session.save()
-      console.log('user number ' + data[0].userId + ' has successfully logged in!!');
-      res.redirect('/')
-    } else {
-      console.log('incorrect password!')
-      res.redirect('/')
-      }
-  })
-  .catch(function(err){
-    console.log('error: ', err)
-    res.sendStatus(403)
-  })
-})
-
-app.get('/logout', function (req, res) {
-  console.log('u have logged out!');
-  req.session.destroy()
-  console.log('req.session after logout: ', req.session);
-  res.redirect('/')
-})
 
 app.post('/', function (req, res) {
 
