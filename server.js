@@ -44,7 +44,7 @@ app.post('/login', function (req, res) {
       req.session.save()
       console.log('req.session', req.session);
       console.log('user number ' + data[0].userId + ' has successfully logged in!!');
-      res.redirect('/')
+      res.sendStatus(200)
     }
   })
   .catch(function(err){

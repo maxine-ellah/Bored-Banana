@@ -9,18 +9,6 @@ var $ = require('jquery')
 $(document).ready(function(){
   loginPage()
   console.log('hitting doc ready');
-  $("button#addBananaData").click(function(){
-    addBananaData()
-  }) //close addBanana listener
-  $("button#showBananas").click(function(e){
-    showBananaData()
-    e.preventDefault()
-  }) //close showBananas listener
-
-  $("button#logout").click(function(){
-    console.log('logout button listening');
-    submitLogout()
-  }) //close logout listener
 
   $("button#signUp").click(function(){
     renderSignUp()
@@ -35,11 +23,33 @@ $(document).ready(function(){
       e.target.addEventListener('click', submitSignUp(), false)
       e.preventDefault()
     } //close if statement
+    if(e.target.id === "logout") {
+      e.target.addEventListener('click', submitLogout(), false)
+      e.preventDefault()
+    }//close logout listener
+    if(e.target.id === "addBananaData") {
+      e.target.addEventListener('click', addBananaData(), false)
+      e.preventDefault()
+    }//close addBanana listener
+    if(e.target.id === "showBananas") {
+      e.target.addEventListener('click', showBananaData(), false)
+      e.preventDefault()
+    }//close showBananas listener
+
   }) //close submitSignUp listener
 
-  function renderSignUp() {
-    $('body').html(signUpPage)
-  }
+
+  // $("button#addBananaData").click(function(){
+  //   console.log('add banana button');
+  //   addBananaData()
+  // })
+
+  $("button#showBananas").click(function(e){
+    showBananaData()
+    e.preventDefault()
+  }) //close showBananas listener
+
+
 
   function submitLogin() {
     var email = document.getElementById('email').value
@@ -63,10 +73,12 @@ $(document).ready(function(){
       } else {
         document.getElementById("error").innerHTML = "Oops, there was an error. Please try again."
       }
-
     })
   }
 
+  function renderSignUp() {
+    $('body').html(signUpPage)
+  }
 
   function submitSignUp() {
     var name = document.getElementById('name').value
@@ -88,8 +100,10 @@ $(document).ready(function(){
     })
   }
 
+
   function submitLogout() {
     console.log('submitLogout button');
+
     request
     .get('/logout')
     .end(function(err, res){
@@ -118,6 +132,9 @@ $(document).ready(function(){
       .get('http://localhost:3000/bananas')
       .end(function(err, res) {
         $('body').html(bananaStats({ bananas: res.body }))
+        $('#backBtn').click(function(){
+        $('body').html(bananaEntry)
+        })
         $(".startTimerServer").click(function(){
           startTimer($(this).data("id"))
         })
