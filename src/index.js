@@ -18,37 +18,32 @@ $(document).ready(function(){
     submitLogin()
   }) //close login listener
 
+  //===listeners on hbs views===//
+
   $("body").click(function(e) {
     if(e.target.id === "submitSignUp") {
       e.target.addEventListener('click', submitSignUp(), false)
       e.preventDefault()
-    } //close if statement
+    } //close submitSignUp listener
+
     if(e.target.id === "logout") {
       e.target.addEventListener('click', submitLogout(), false)
       e.preventDefault()
     }//close logout listener
+
     if(e.target.id === "addBananaData") {
       e.target.addEventListener('click', addBananaData(), false)
       e.preventDefault()
     }//close addBanana listener
+
     if(e.target.id === "showBananas") {
       e.target.addEventListener('click', showBananaData(), false)
       e.preventDefault()
     }//close showBananas listener
 
-  }) //close submitSignUp listener
+  }) //close body listener
 
-
-  // $("button#addBananaData").click(function(){
-  //   console.log('add banana button');
-  //   addBananaData()
-  // })
-
-  $("button#showBananas").click(function(e){
-    showBananaData()
-    e.preventDefault()
-  }) //close showBananas listener
-
+  //===listeners on hbs views END===//
 
 
   function submitLogin() {
@@ -76,9 +71,11 @@ $(document).ready(function(){
     })
   }
 
+
   function renderSignUp() {
     $('body').html(signUpPage)
   }
+
 
   function submitSignUp() {
     var name = document.getElementById('name').value
@@ -123,7 +120,7 @@ $(document).ready(function(){
       .post('/')
       .send(formData)
       .end(function(err, res) {
-        document.getElementById("form").reset()
+        document.getElementById("bananaForm").reset()
       })
   }
 
@@ -132,9 +129,11 @@ $(document).ready(function(){
       .get('http://localhost:3000/bananas')
       .end(function(err, res) {
         $('body').html(bananaStats({ bananas: res.body }))
+
         $('#backBtn').click(function(){
         $('body').html(bananaEntry)
         })
+
         $(".startTimerServer").click(function(){
           startTimer($(this).data("id"))
         })

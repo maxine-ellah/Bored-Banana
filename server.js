@@ -45,11 +45,10 @@ app.post('/login', function (req, res) {
       console.log('req.session', req.session);
       console.log('user number ' + data[0].userId + ' has successfully logged in!!');
       res.sendStatus(200)
+    } else {
+      console.log('there is an error');
+      res.sendStatus(403)
     }
-  })
-  .catch(function(err){
-      console.log('error: ', err)
-      res.sendStatus('403')
   })
 })
 
