@@ -93,7 +93,12 @@ $(document).ready(function(){
     .post('/signUp')
     .send(signUpFormData)
     .end(function(err, res){
-      $('body').html(bananaEntry)
+      if(res.status === 200) {
+        $('body').html(bananaEntry)
+      } else {
+        document.getElementById("signUpError").innerHTML = "Oops, there was an error. Please try again."
+      }
+
     })
   }
 
@@ -117,7 +122,7 @@ $(document).ready(function(){
     var formData = {quantity: quantity, dateBought: dateBought, cost: cost}
 
     request
-      .post('/')
+      .post('/bananas/new')
       .send(formData)
       .end(function(err, res) {
         document.getElementById("bananaForm").reset()
@@ -126,7 +131,7 @@ $(document).ready(function(){
 
   function showBananaData() {
     request
-      .get('http://localhost:3000/bananas')
+      .get('/bananas')
       .end(function(err, res) {
         $('body').html(bananaStats({ bananas: res.body }))
 
@@ -142,7 +147,7 @@ $(document).ready(function(){
 
   function startTimer(id){
     request
-    .get('http://localhost:3000/bananas/' + id)
+    .get('/bananas/' + id)
     .end(function(err, res){
       console.log('res.body: ',res.body);
       $('body').html(timerPage(res.body))

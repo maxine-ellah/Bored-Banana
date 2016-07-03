@@ -24,11 +24,6 @@ function getUserId () {
   return knex('users').max('userId')
 }
 
-// app.get('/', function (req, res) {
-//   console.log('req.session in /', req.session);
-//   res.render('index');
-// });
-
 
 app.post('/login', function (req, res) {
 
@@ -55,7 +50,6 @@ app.post('/login', function (req, res) {
 app.get('/logout', function (req, res) {
   console.log('u have logged out!');
   req.session.destroy()
-  console.log('req.session after logout: ', req.session);
   res.redirect('/')
 })
 
@@ -66,7 +60,7 @@ app.post('/signUp', function (req, res) {
   .then(function(data){
     if (data.length !== 0){
       console.log('data in /signUp: ', data);
-      res.send('Sorry, that username is taken. Please choose another one.')
+      res.sendStatus(403)
     } else {
       knex('users')
       .insert({name: req.body.name, email: req.body.email, hashedPassword: hash})
@@ -88,7 +82,7 @@ app.post('/signUp', function (req, res) {
 })
 
 
-app.post('/', function (req, res) {
+app.post('/bananas/new', function (req, res) {
 
   console.log('req.session in / post route: ', req.session);
   console.log('this is server req.body: ', req.body)
