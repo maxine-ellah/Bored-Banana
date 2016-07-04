@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/maxine-ellah/personal-project#readme",
   "dependencies": {
-    "bcrypt": "^0.8.7",
     "bcrypt-node": "^0.1.0",
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
@@ -37,8 +36,6 @@
     "moment-timezone": "^0.5.3",
     "node-dev": "^3.1.0",
     "nodemon": "^1.9.1",
-    "passport": "^0.3.2",
-    "passport-local": "^1.0.0",
     "pg": "^5.1.0",
     "superagent": "^1.8.3"
   },
