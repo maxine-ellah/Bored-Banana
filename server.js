@@ -140,7 +140,7 @@ app.get('/bananas/:id', function (req, res) {
 })// close /bananas/:id route
 
 
-app.listen(3000, function (req, res) {
+app.listen(3000, function () {
   console.log('A Bored Banana is listening on port 3000!');
 });
 
