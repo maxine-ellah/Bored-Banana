@@ -6,6 +6,8 @@ var bananaEntry = require('../views/bananaEntry.hbs')
 var request = require('superagent')
 var $ = require('jquery')
 
+//===listeners on HTML===//
+
 $(document).ready(function(){
   loginPage()
   console.log('hitting doc ready');
@@ -17,6 +19,9 @@ $(document).ready(function(){
   $("button#login").click(function(){
     submitLogin()
   }) //close login listener
+
+  //===listeners on HTML END===//
+
 
   //===listeners on hbs views===//
 
@@ -69,12 +74,12 @@ $(document).ready(function(){
         document.getElementById("error").innerHTML = "Oops, there was an error. Please try again."
       }
     })
-  }
+  } // close submitLogin function
 
 
   function renderSignUp() {
     $('body').html(signUpPage)
-  }
+  } //close renderSignUp function
 
 
   function submitSignUp() {
@@ -96,22 +101,20 @@ $(document).ready(function(){
       if(res.status === 200) {
         $('body').html(bananaEntry)
       } else {
-        document.getElementById("signUpError").innerHTML = "Oops, there was an error. Please try again."
+        document.getElementById("signUpError").innerHTML = "Oops, that name is taken. Please try again."
       }
-
     })
-  }
+  } //close submitSignUp function
 
 
   function submitLogout() {
-    console.log('submitLogout button');
 
     request
     .get('/logout')
     .end(function(err, res){
       console.log('User logged out!');
     })
-  }
+  } //close submitLogout function
 
 
   function addBananaData() {
@@ -127,7 +130,8 @@ $(document).ready(function(){
       .end(function(err, res) {
         document.getElementById("bananaForm").reset()
       })
-  }
+  } //close addBananaData function
+
 
   function showBananaData() {
     request
@@ -143,18 +147,18 @@ $(document).ready(function(){
           startTimer($(this).data("id"))
         })
       });
-  }
+  } //close showBananaData function
+
 
   function startTimer(id){
     request
     .get('/bananas/' + id)
     .end(function(err, res){
-      console.log('res.body: ',res.body);
       $('body').html(timerPage(res.body))
       $('#backBtn').click(function(){
         showBananaData()
       })
     })
-  }
+  } //close startTimer function
 
 }) //close document ready

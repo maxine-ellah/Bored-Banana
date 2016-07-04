@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(session({ secret: 'cinnamon bun', resave: false, saveUninitialized: false }))
 
+
 function getUserId () {
   return knex('users').max('userId')
 }
@@ -45,13 +46,15 @@ app.post('/login', function (req, res) {
       res.sendStatus(403)
     }
   })
-})
+})// close /login route
+
 
 app.get('/logout', function (req, res) {
   console.log('u have logged out!');
   req.session.destroy()
   res.redirect('/')
-})
+})// close /logout route
+
 
 app.post('/signUp', function (req, res) {
   var hash = bcrypt.hashSync(req.body.password)
@@ -79,26 +82,28 @@ app.post('/signUp', function (req, res) {
     console.log('error: ', err);
     res.send('Please, refresh the page and try again.')
   })
-})
+})// close /signUp route
 
 
 app.post('/bananas/new', function (req, res) {
 
   console.log('req.session in / post route: ', req.session);
-  console.log('this is server req.body: ', req.body)
 
-  if(!req.session.userId){
+  if(!req.session.userId){ //REFACTOR - perhaps write a function to check user is in session
     console.log('You need to log in!');
     res.redirect('/')
   } else {
     knex('bananas')
     .insert({userId: req.session.userId, quantity: req.body.quantity, dateBought: moment(req.body.dateBought).format("dddd, MMMM Do YYYY"), cost: req.body.cost, timeEntered: moment()})
-    .then(function (data) {
+    .then(function () {
       console.log('req.session after knex insert: ', req.session)
+      res.sendStatus(200)
     })
-      res.send('ok')
-      }
-  })
+    .catch(function(err) {
+      console.log('caught error in /bananas/new route: ', err);
+    })
+    }
+  })// close /bananas/new route
 
 
 
@@ -106,19 +111,19 @@ app.get('/bananas', function (req, res) {
 
   console.log('req.session in /bananas route: ', req.session);
 
-  if(!req.session.userId){
+  if(!req.session.userId){ //REFACTOR - perhaps write a function to check user is in session
     console.log('You need to log in!');
     res.redirect('/')
   } else {
     knex.select()
-    .from('bananas')
-    .then(function(data){
+    .from('bananas') //this is where you add query to only select bananas whose userID match
+    .then(function(data){ //the userID in the session
       console.log('data from knex select: ', data);
       console.log('req.session after knex insert: ', req.session)
       res.json(data)
     })
   }
-})
+})// close /bananas route
 
 
 app.get('/bananas/:id', function (req, res) {
@@ -132,7 +137,7 @@ app.get('/bananas/:id', function (req, res) {
     console.log('req.session after knex insert: ', req.session)
     res.json(data[0]);
   })
-})
+})// close /bananas/:id route
 
 
 app.listen(3000, function (req, res) {
