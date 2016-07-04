@@ -46,6 +46,10 @@ app.post('/login', function (req, res) {
       res.sendStatus(403)
     }
   })
+  .catch(function (err) {
+    console.log('caught error in /login route: ', err);
+    res.sendStatus(403)
+  })
 })// close /login route
 
 
