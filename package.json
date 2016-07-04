@@ -26,9 +26,11 @@
   },
   "homepage": "https://github.com/maxine-ellah/personal-project#readme",
   "dependencies": {
+    "bcrypt-node": "^0.1.0",
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.13.0",
     "hbs": "^4.0.0",
     "knex": "^0.11.7",
     "moment-timezone": "^0.5.3",

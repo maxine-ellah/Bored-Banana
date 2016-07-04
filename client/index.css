@@ -20,3 +20,8 @@ input.startTimerServer {
   margin-bottom: 40px;
   margin-top: 15px;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
