@@ -3,7 +3,7 @@
 *Too many bananas are bored of going brown in the fruitbowl. Don't leave your yellow buds behind,* **_get that potassium in ya!_**
 
 <p align="center">
-  <img src="./views/boredbanana2.png" alt="Sublime's custom image"/>
+  <img src="./client/boredbanana2.png" alt="Sublime's custom image"/>
 </p>
 
 Bored Banana is a food expiration app to help cut down food wastage.
