@@ -119,7 +119,7 @@ app.get('/bananas', function (req, res) {
     console.log('You need to log in!');
     res.redirect('/')
   } else {
-    knex.from('bananas').where({userId: req.session.userId}) //this is where you add query to only select bananas whose userID match
+    knex.from('bananas').where({userId: req.session.userId}) //only selects bananas which match userId in session
     .then(function(data){ //the userID in the session
       console.log('data from knex select: ', data);
       console.log('req.session after knex insert: ', req.session)
