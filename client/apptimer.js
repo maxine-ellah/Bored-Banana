@@ -13861,8 +13861,9 @@ var moment = require("moment")
 
 
   setInterval(function () {
-    var dateBought = moment($("#time"))
+    var dateBought = moment(document.getElementById('time').innerHTML, "YYYY-MM-DD")
     var endTime = moment(dateBought).add(7, 'day')
+
 
     var days = moment.duration(endTime - moment()).days()
     var hours = moment.duration(endTime - moment()).hours()
@@ -13880,5 +13881,7 @@ var moment = require("moment")
     $("#timeDisplay").text(days + " days " + hours + " hours " + minutes + " minutes " + seconds + " seconds ")
 
   }, 1000);
+
+  clearInterval(myTimer)
 
 },{"jquery":1,"moment":2}]},{},[3]);

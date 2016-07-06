@@ -98,7 +98,7 @@ app.post('/bananas/new', function (req, res) {
     res.redirect('/')
   } else {
     knex('bananas')
-    .insert({userId: req.session.userId, quantity: req.body.quantity, dateBought: moment(req.body.dateBought).format("dddd, MMMM Do YYYY"), cost: req.body.cost, timeEntered: moment()})
+    .insert({userId: req.session.userId, quantity: req.body.quantity, dateBought: req.body.dateBought, cost: req.body.cost, timeEntered: moment()})
     .then(function () {
       console.log('req.session after knex insert: ', req.session)
       res.sendStatus(200)

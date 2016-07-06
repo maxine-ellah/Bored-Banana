@@ -46,6 +46,10 @@ $(document).ready(function(){
       e.preventDefault()
     }//close showBananas listener
 
+    if(e.target.className === "startTimerServer") {
+      e.target.addEventListener('click', startTimer(), false)
+      e.preventDefault()
+    }// close startTimerServer listener
   }) //close body listener
 
   //===listeners on hbs views END===//
@@ -154,9 +158,11 @@ $(document).ready(function(){
     request
     .get('/bananas/' + id)
     .end(function(err, res){
+      console.log('res.body in startTimer function: ', res.body);
       $('body').html(timerPage(res.body))
       $('#backBtn').click(function(){
         showBananaData()
+        clearInterval()
       })
     })
   } //close startTimer function
