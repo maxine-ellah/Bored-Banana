@@ -74,7 +74,7 @@ app.post('/signUp', function (req, res) {
       .then(function() {
         return getUserId()
       })
-      .then(function(data) {
+      .then(function(data) { //perhaps write function to set and save session here
         req.session.userId = data[0].max
         req.session.save()
         console.log('user ' + req.session.userId + ' successfully signed up!');
