@@ -13882,6 +13882,4 @@ var moment = require("moment")
 
   }, 1000);
 
-  clearInterval(myTimer)
-
 },{"jquery":1,"moment":2}]},{},[3]);

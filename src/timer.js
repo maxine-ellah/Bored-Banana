@@ -23,5 +23,3 @@ var moment = require("moment")
     $("#timeDisplay").text(days + " days " + hours + " hours " + minutes + " minutes " + seconds + " seconds ")
 
   }, 1000);
-
-  clearInterval(myTimer)
