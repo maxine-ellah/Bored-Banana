@@ -162,7 +162,6 @@ $(document).ready(function(){
       $('body').html(timerPage(res.body))
       $('#backBtn').click(function(){
         showBananaData()
-        clearInterval()
       })
     })
   } //close startTimer function

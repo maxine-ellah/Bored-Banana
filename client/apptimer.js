@@ -13859,7 +13859,7 @@ return jQuery;
 var $ = require("jquery")
 var moment = require("moment")
 
-
+if (document.getElementById('time').length) {
   setInterval(function () {
     var dateBought = moment(document.getElementById('time').innerHTML, "YYYY-MM-DD")
     var endTime = moment(dateBought).add(7, 'day')
@@ -13881,5 +13881,7 @@ var moment = require("moment")
     $("#timeDisplay").text(days + " days " + hours + " hours " + minutes + " minutes " + seconds + " seconds ")
 
   }, 1000);
+
+}
 
 },{"jquery":1,"moment":2}]},{},[3]);
