@@ -123,10 +123,6 @@ app.get('/bananas', function (req, res) {
     .then(function(data){ //the userID in the session
       console.log('data from knex select: ', data);
       console.log('req.session after knex insert: ', req.session)
-      var dataDateFormatted = data.map(function(data[0].dateBought){
-        return moment(data[0].dateBought).format("dddd, MMMM Do YYYY")
-      })
-      console.log('dataDateFormatted', dataDateFormatted);
       res.json(data)
     })
   }

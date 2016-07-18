@@ -5,6 +5,7 @@ var signUpPage = require('../views/signUp.hbs')
 var bananaEntry = require('../views/bananaEntry.hbs')
 var request = require('superagent')
 var $ = require('jquery')
+var moment = require('moment')
 
 //===listeners on HTML===//
 
@@ -141,6 +142,7 @@ $(document).ready(function(){
     request
       .get('/bananas')
       .end(function(err, res) {
+        console.log('res.body in showBananaData in index.js: ', res.body)
         $('body').html(bananaStats({ bananas: res.body }))
 
         $('#backBtn').click(function(){
