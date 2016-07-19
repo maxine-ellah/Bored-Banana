@@ -7,7 +7,7 @@
 </p>
 
 Bored Banana is a food expiration app to help cut down food wastage.
-This was the first project I made at Dev Academy, and it was built as a prototype to time the usability of all kinds of perishable foods. I chose bananas because they're yummy, fun to draw and amongst some of the most frequently wasted foods in New Zealand household. Crazy, right?
+This was the first project I made at Dev Academy and it was built as a prototype to time the usability of all kinds of perishable foods. I chose bananas because they're yummy, fun to draw and amongst some of the most frequently wasted foods in New Zealand household. Crazy, right?
 
 **Here's how it works:**
 
