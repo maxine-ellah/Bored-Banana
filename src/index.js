@@ -150,6 +150,7 @@ $(document).ready(function(){
         })
 
         $(".startTimerServer").click(function(){
+          console.log('$(this).data("id")', $(this).data("id"));
           startTimer($(this).data("id"))
         })
       });

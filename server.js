@@ -112,6 +112,7 @@ app.post('/bananas/new', function (req, res) {
 
 
 app.get('/bananas', function (req, res) {
+console.log('/bananas/ ROUTE BEING HIT!!!!')
 
   console.log('req.session in /bananas route: ', req.session);
 
@@ -131,18 +132,21 @@ app.get('/bananas', function (req, res) {
 
 
 app.get('/bananas/:id', function (req, res) {
+console.log('/bananas/:id ROUTE BEING HIT!!!!');
+
 
   console.log('req.session in /bananas/:id route: ', req.session);
-  console.log("req.params in /bananas/:id route: ", req.params);
+  console.log('req.params in /bananas/:id route: ', req.params);
 
   knex('bananas')
   .where({id: req.params.id})
   .then(function(data){
-    console.log('req.session after knex insert: ', req.session)
+    console.log('req.session after knex insert ((/bananas/:id)): ', req.session)
     res.json(data[0]);
   })
 })// close /bananas/:id route
 
+function getBananaByID () {}
 
 app.listen(3000, function () {
   console.log('A Bored Banana is listening on port 3000!');

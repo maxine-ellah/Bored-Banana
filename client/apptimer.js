@@ -13860,11 +13860,7 @@ var $ = require("jquery")
 var moment = require("moment")
 
 
-if (document.getElementById('time')) {
-
-
-  var intervalID = setInterval(timerFunction, 1000)
-}
+var intervalID = setInterval(timerFunction, 1000)
 
 function timerFunction() {
 if (!document.getElementById('time')) {
@@ -13880,16 +13876,20 @@ var hours = moment.duration(endTime - moment()).hours()
 var minutes = moment.duration(endTime - moment()).minutes()
 var seconds = moment.duration(endTime - moment()).seconds()
 
-if (days <= 1 && hours <= 1 && minutes <= 1 && seconds <= 1) {
-  days = 0
-  hours = 0
-  minutes = 0
-  seconds = 0
-  alert("Your bananas are old, put them in the freezer.")
-}
+expirationAlert(days, hours, minutes, seconds, intervalID)
 
 $("#timeDisplay").text(days + " days " + hours + " hours " + minutes + " minutes " + seconds + " seconds ")
+}
 
+function expirationAlert(days, hours, minutes, seconds, intervalID) {
+  if (days <= 1 && hours <= 1 && minutes <= 1 && seconds <= 1) {
+    days = 0
+    hours = 0
+    minutes = 0
+    seconds = 0
+    clearInterval(intervalID)
+    alert("Your bananas are old, put them in the freezer.")
+  }
 }
 
 },{"jquery":1,"moment":2}]},{},[3]);
