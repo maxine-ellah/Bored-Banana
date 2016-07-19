@@ -137,7 +137,6 @@ $(document).ready(function(){
     request
       .get('/bananas')
       .end(function(err, res) {
-        console.log('res.body in showBananaData in index.js: ', res.body)
         $('body').html(bananaStats({ bananas: res.body }))
 
         $('#backBtn').click(function(){
@@ -145,7 +144,6 @@ $(document).ready(function(){
         })
 
         $(".startTimerServer").click(function(){
-          console.log('$(this).data("id")', $(this).data("id"));
           startTimer($(this).data("id"))
         })
       });
@@ -153,12 +151,9 @@ $(document).ready(function(){
 
 
   function startTimer(id){
-    console.log('startTimer(id) route bing hit');
-    console.log('id in startTimer(id): ', id);
     request
     .get('/bananas/' + id)
     .end(function(err, res){
-      console.log('res.body in startTimer function: ', res.body);
       $('body').html(timerPage(res.body))
       $('#backBtn').click(function(){
         showBananaData()
