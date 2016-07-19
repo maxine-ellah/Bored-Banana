@@ -46,11 +46,6 @@ $(document).ready(function(){
       e.target.addEventListener('click', showBananaData(), false)
       e.preventDefault()
     }//close showBananas listener
-
-    if(e.target.className === "startTimerServer") {
-      e.target.addEventListener('click', startTimer(), false)
-      e.preventDefault()
-    }// close startTimerServer listener
   }) //close body listener
 
   //===listeners on hbs views END===//
@@ -158,6 +153,8 @@ $(document).ready(function(){
 
 
   function startTimer(id){
+    console.log('startTimer(id) route bing hit');
+    console.log('id in startTimer(id): ', id);
     request
     .get('/bananas/' + id)
     .end(function(err, res){
