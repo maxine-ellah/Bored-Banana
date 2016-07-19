@@ -27,10 +27,6 @@ function getUserId () {
 
 
 app.post('/login', function (req, res) {
-
-  console.log('req.body in login route: ', req.body); //production console.logs to check
-  console.log('req.session in login route: ', req.session);//login and session data.
-
   knex('users')
   .where({email: req.body.email})
   .then(function(data) {
@@ -42,7 +38,6 @@ app.post('/login', function (req, res) {
       console.log('user number ' + data[0].userId + ' has successfully logged in!!');
       res.sendStatus(200)
     } else {
-      console.log('there is an error');
       res.sendStatus(403)
     }
   })

@@ -4,14 +4,18 @@ var moment = require("moment")
 
 var intervalID = setInterval(timerFunction, 1000)
 
+var dateBought = moment(document.getElementById('time').innerHTML, "YYYY-MM-DD")
+
+var endTime = moment(dateBought).add(7, 'day')
+
+
+
 function timerFunction() {
 if (!document.getElementById('time')) {
   clearInterval(intervalID)
 }
 
-var dateBought = moment(document.getElementById('time').innerHTML, "YYYY-MM-DD")
 
-var endTime = moment(dateBought).add(7, 'day')
 
 var days = moment.duration(endTime - moment()).days()
 var hours = moment.duration(endTime - moment()).hours()
