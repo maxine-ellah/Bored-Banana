@@ -123,7 +123,7 @@ console.log('/bananas/ ROUTE BEING HIT!!!!')
     knex.from('bananas').where({userId: req.session.userId}) //only selects bananas which match userId in session
     .then(function(data){ //the userID in the session
       console.log('data from knex select: ', data);
-      console.log('req.session after knex insert: ', req.session)
+      console.log('req.session after knex insert /bananas: ', req.session)
       res.json(data)
     })
   }
@@ -141,7 +141,7 @@ console.log('/bananas/:id ROUTE BEING HIT!!!!');
   knex('bananas')
   .where({id: req.params.id})
   .then(function(data){
-    console.log('req.session after knex insert ((/bananas/:id)): ', req.session)
+    console.log('req.session after knex select ((/bananas/:id)): ', req.session)
     res.json(data[0]);
   })
 })// close /bananas/:id route
