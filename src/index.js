@@ -5,6 +5,7 @@ var signUpPage = require('../views/signUp.hbs')
 var bananaEntry = require('../views/bananaEntry.hbs')
 var request = require('superagent')
 var $ = require('jquery')
+var moment = require('moment')
 
 //===listeners on HTML===//
 
@@ -45,7 +46,6 @@ $(document).ready(function(){
       e.target.addEventListener('click', showBananaData(), false)
       e.preventDefault()
     }//close showBananas listener
-
   }) //close body listener
 
   //===listeners on hbs views END===//

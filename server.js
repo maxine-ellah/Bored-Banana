@@ -27,10 +27,6 @@ function getUserId () {
 
 
 app.post('/login', function (req, res) {
-
-  console.log('req.body in login route: ', req.body); //production console.logs to check
-  console.log('req.session in login route: ', req.session);//login and session data.
-
   knex('users')
   .where({email: req.body.email})
   .then(function(data) {
@@ -42,7 +38,6 @@ app.post('/login', function (req, res) {
       console.log('user number ' + data[0].userId + ' has successfully logged in!!');
       res.sendStatus(200)
     } else {
-      console.log('there is an error');
       res.sendStatus(403)
     }
   })
@@ -98,7 +93,7 @@ app.post('/bananas/new', function (req, res) {
     res.redirect('/')
   } else {
     knex('bananas')
-    .insert({userId: req.session.userId, quantity: req.body.quantity, dateBought: moment(req.body.dateBought).format("dddd, MMMM Do YYYY"), cost: req.body.cost, timeEntered: moment()})
+    .insert({userId: req.session.userId, quantity: req.body.quantity, dateBought: req.body.dateBought, cost: req.body.cost, timeEntered: moment()})
     .then(function () {
       console.log('req.session after knex insert: ', req.session)
       res.sendStatus(200)
@@ -121,8 +116,6 @@ app.get('/bananas', function (req, res) {
   } else {
     knex.from('bananas').where({userId: req.session.userId}) //only selects bananas which match userId in session
     .then(function(data){ //the userID in the session
-      console.log('data from knex select: ', data);
-      console.log('req.session after knex insert: ', req.session)
       res.json(data)
     })
   }
@@ -131,18 +124,14 @@ app.get('/bananas', function (req, res) {
 
 
 app.get('/bananas/:id', function (req, res) {
-
-  console.log('req.session in /bananas/:id route: ', req.session);
-  console.log("req.params in /bananas/:id route: ", req.params);
-
   knex('bananas')
   .where({id: req.params.id})
   .then(function(data){
-    console.log('req.session after knex insert: ', req.session)
     res.json(data[0]);
   })
 })// close /bananas/:id route
 
+function getBananaByID () {}
 
 app.listen(3000, function () {
   console.log('A Bored Banana is listening on port 3000!');
