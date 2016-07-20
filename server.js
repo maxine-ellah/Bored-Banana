@@ -6,6 +6,7 @@ var moment = require('moment')
 var bcrypt = require('bcrypt-node')
 var Knex = require('knex')
 var session = require('express-session');
+var port = process.env.PORT || 3000
 
 
 var knexConfig = require('./knexfile')
@@ -133,7 +134,7 @@ app.get('/bananas/:id', function (req, res) {
 
 function getBananaByID () {}
 
-app.listen(3000, function () {
+app.listen(port, function () {
   console.log('A Bored Banana is listening on port 3000!');
 });
 
