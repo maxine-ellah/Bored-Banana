@@ -13890,7 +13890,7 @@ function timerFunction() {
 }
 
 function displayTimer(days, hours, minutes, seconds){
-  document.getElementById('timeDisplay').innerHTML = (days + " days " + hours + " hours " + minutes + " minutes " + seconds + " seconds ")
+  document.getElementByTagNames('h3').innerHTML = (days + " days " + hours + " hours " + minutes + " minutes " + seconds + " seconds ")
 }
 
 },{"jquery":1,"moment":2}]},{},[3]);
