@@ -8,7 +8,6 @@ var Knex = require('knex')
 var session = require('express-session');
 var port = process.env.PORT || 3000
 
-
 var knexConfig = require('./knexfile')
 var env = process.env.NODE_ENV || 'development'
 var knex = Knex(knexConfig[env])
@@ -19,6 +18,7 @@ app.set('view engine', 'hbs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use(require('cookie-parser')())
 app.use(session({ secret: 'cinnamon bun', resave: false, saveUninitialized: false }))
 
 
