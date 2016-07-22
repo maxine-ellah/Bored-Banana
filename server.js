@@ -31,26 +31,21 @@ app.post('/login', function (req, res) {
   knex('users')
   .where({email: req.body.email})
   .then(function(data) {
-    console.log('data in where clause in /login: ', data)
     if (bcrypt.compareSync(req.body.password, data[0].hashedPassword)) {
       req.session.userId = data[0].userId
       req.session.save()
-      console.log('req.session', req.session);
-      console.log('user number ' + data[0].userId + ' has successfully logged in!!');
       res.sendStatus(200)
     } else {
       res.sendStatus(403)
     }
   })
   .catch(function (err) {
-    console.log('caught error in /login route: ', err);
     res.sendStatus(403)
   })
 })// close /login route
 
 
 app.get('/logout', function (req, res) {
-  console.log('u have logged out!');
   req.session.destroy()
   res.redirect('/')
 })// close /logout route
@@ -62,7 +57,6 @@ app.post('/signUp', function (req, res) {
   .whereIn('name', req.body.name)
   .then(function(data){
     if (data.length !== 0){
-      console.log('data in /signUp: ', data);
       res.sendStatus(403)
     } else {
       knex('users')
@@ -73,46 +67,33 @@ app.post('/signUp', function (req, res) {
       .then(function(data) { //perhaps write function to set and save session here
         req.session.userId = data[0].max
         req.session.save()
-        console.log('user ' + req.session.userId + ' successfully signed up!');
         return res.json(data)
       })
       }
   })
   .catch(function(err){
-    console.log('error: ', err);
     res.send('Please, refresh the page and try again.')
   })
 })// close /signUp route
 
 
 app.post('/bananas/new', function (req, res) {
-
-  console.log('req.session in / post route: ', req.session);
-
   if(!req.session.userId){ //REFACTOR - perhaps write a function to check user is in session
-    console.log('You need to log in!');
     res.redirect('/')
   } else {
     knex('bananas')
     .insert({userId: req.session.userId, quantity: req.body.quantity, dateBought: req.body.dateBought, cost: req.body.cost, timeEntered: moment()})
     .then(function () {
-      console.log('req.session after knex insert: ', req.session)
       res.sendStatus(200)
     })
     .catch(function(err) {
-      console.log('caught error in /bananas/new route: ', err);
     })
     }
   })// close /bananas/new route
 
 
-
 app.get('/bananas', function (req, res) {
-
-  console.log('req.session in /bananas route: ', req.session);
-
   if(!req.session.userId){ //REFACTOR - perhaps write a function to check user is in session
-    console.log('You need to log in!');
     res.redirect('/')
   } else {
     knex.from('bananas').where({userId: req.session.userId}) //only selects bananas which match userId in session
@@ -123,7 +104,6 @@ app.get('/bananas', function (req, res) {
 })// close /bananas route
 
 
-
 app.get('/bananas/:id', function (req, res) {
   knex('bananas')
   .where({id: req.params.id})
@@ -132,7 +112,6 @@ app.get('/bananas/:id', function (req, res) {
   })
 })// close /bananas/:id route
 
-function getBananaByID () {}
 
 app.listen(port, function () {
   console.log('A Bored Banana is listening on port 3000!');
