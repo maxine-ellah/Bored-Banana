@@ -12,7 +12,7 @@ This was the first project I made at Dev Academy and it was built as a prototype
 **Here's how it works:**
 
 1. Buy some bananas
-2. sign in or login to [bored banana](bored-banana.herokuapp.com)
+2. sign in or login to [bored banana](https://bored-banana.herokuapp.com/)
 3. Enter their details; quantity, date bought and total cost
 4. Add your bananas to the database by clicking the 'add banana data' button
 5. See all your previously bought bananas by clicking the 'show me my bananas' button
